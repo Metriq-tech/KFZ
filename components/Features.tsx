@@ -20,22 +20,22 @@ export function Features() {
               Über Uns
             </div>
             <h2 className="text-4xl font-display font-bold leading-tight">
-              Die erfolgreichsten Werkstätten in Hamburg haben eines gemeinsam.
+              Seit über 20 Jahren Ihr
+              <span className="text-red-600"> Vertrauenspartner</span> in Hamburg
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Ihre Website arbeitet FÜR sie – mit Festpreisen, Online-Terminbuchung, Google-Bewertungen und echten Fotos.
-              Die Werkstätten mit wenigen Reviews haben Websites von 2010 oder solche, die gar nicht laden.
-              Wir bringen Ihre Präsenz auf das Niveau der Top-Player.
+              Als familiär geführter KFZ-Meisterbetrieb reparieren und warten wir Fahrzeuge aller Hersteller – vom Kleinwagen bis zum Transporter.
+              Unsere zertifizierten Meister arbeiten mit modernsten Diagnosegeräten und ausschließlich hochwertigen Originalteilen.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
               {[
-                "Online Terminbuchung",
-                "Transparente Festpreise",
-                "Echte Kundenbewertungen",
-                "Modernste Diagnose",
-                "Zertifizierte Experten",
-                "Original Ersatzteile"
+                "TÜV & HU Vorbereitung",
+                "Festpreisgarantie",
+                "Kostenloser Kostenvoranschlag",
+                "Modernste Diagnosetechnik",
+                "Meisterbetrieb seit 2003",
+                "Original & OEM-Ersatzteile"
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
@@ -45,7 +45,7 @@ export function Features() {
             </div>
 
             <button className="mt-8 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-colors shadow-lg shadow-red-600/20">
-              Mehr Erfahren
+              Jetzt Termin buchen
             </button>
           </motion.div>
 

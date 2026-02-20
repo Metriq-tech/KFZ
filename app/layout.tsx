@@ -32,6 +32,14 @@ export const metadata: Metadata = {
       'Ihre vertrauenswürdige KFZ-Werkstatt in Hamburg. Online buchbar, faire Festpreise, über 20 Jahre Erfahrung.',
     type: 'website',
     locale: 'de_DE',
+    images: [
+      {
+        url: '/images/Werkstatt3.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'MEISTER KFZ-Meisterbetrieb Hamburg – Unsere Werkstatt',
+      },
+    ],
   },
   robots: {
     index: true,

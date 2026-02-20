@@ -61,8 +61,8 @@ export function Hero() {
           >
             {/* Car Image */}
             <Image
-              src="https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1200&auto=format&fit=crop"
-              alt="Luxury Car"
+              src="/images/rotes_auto5_kopie.jpg"
+              alt="KFZ Meisterbetrieb Hamburg – Rotes Fahrzeug"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 800px"
               className="object-contain drop-shadow-2xl z-10"
@@ -137,6 +137,58 @@ export function Hero() {
             <button className="w-full bg-red-600 hover:bg-red-700 text-white text-sm font-bold py-2 rounded-xl transition-colors shadow-lg shadow-red-900/20">
               Termin Buchen
             </button>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Mobile Cards Strip – nur auf Mobile/Tablet sichtbar */}
+      <div className="lg:hidden container mx-auto px-4 pb-6">
+        <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-none">
+          {/* Services Mini-Card */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="flex-shrink-0 snap-start bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-2xl min-w-[200px]"
+          >
+            <div className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full inline-block mb-3">
+              Auto Services
+            </div>
+            <ul className="space-y-1 text-sm text-gray-400">
+              <li>Ölwechsel</li>
+              <li>Reifenwechsel</li>
+              <li>Klimaservice</li>
+              <li>Diagnose</li>
+            </ul>
+          </motion.div>
+
+          {/* Termin-Card */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.65 }}
+            className="flex-shrink-0 snap-start bg-[#1a1a1a] border border-white/10 p-4 rounded-2xl min-w-[200px] relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-16 h-16 bg-red-600/20 blur-2xl rounded-full" />
+            <h4 className="text-red-500 font-bold mb-1 text-sm">Termin sichern</h4>
+            <p className="text-gray-400 text-xs mb-3">Kein Warten – direkt online buchen!</p>
+            <button className="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2 rounded-xl transition-colors">
+              Termin Buchen
+            </button>
+          </motion.div>
+
+          {/* Reifen-Card */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="flex-shrink-0 snap-start bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-2xl min-w-[160px]"
+          >
+            <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center border-2 border-gray-700 mx-auto mb-3">
+              <Disc className="w-6 h-6 text-gray-400" />
+            </div>
+            <h3 className="text-red-500 font-bold text-sm mb-1 text-center">Reifen</h3>
+            <p className="text-gray-400 text-xs text-center">Große Auswahl & Montage</p>
           </motion.div>
         </div>
       </div>
