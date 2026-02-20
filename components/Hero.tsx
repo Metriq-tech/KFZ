@@ -6,7 +6,7 @@ import { Wrench, Star, Briefcase, Wifi, ChevronLeft, ChevronRight, Disc } from '
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen bg-[#0a0a0a] text-white overflow-hidden pt-20 flex flex-col justify-center">
+    <section id="hero" style={{ backgroundColor: 'var(--color-dark)' }} className="relative min-h-screen text-white overflow-hidden pt-20 flex flex-col justify-center">
       {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-red-900/20 blur-[120px] rounded-full" />
@@ -35,9 +35,9 @@ export function Hero() {
               Kaufen Sie Reifen aus unserem Produktsortiment und fahren Sie sorgenfrei.
             </p>
 
-            {/* Connector Line (Decorative) */}
-            <div className="absolute right-[-50px] top-1/2 w-[50px] h-[1px] bg-red-600/50 hidden xl:block">
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-red-600 rounded-full" />
+            {/* Connector Line → docks to rear-tyre hotspot on car */}
+            <div className="absolute right-[-105%] top-[77%] w-[105%] h-[1px] bg-red-600/60 hidden xl:block">
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-red-600 rounded-full border-2 border-white shadow-lg shadow-red-900/50" />
             </div>
           </motion.div>
         </div>
@@ -69,21 +69,27 @@ export function Hero() {
               priority
             />
 
-            {/* Hotspots on Car */}
+            {/* Hotspots on Car – re-kalibriert nach Screenshot */}
+            {/* Dach über Fahrersitz */}
             <motion.div
               aria-hidden="true"
               initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1 }}
-              className="absolute top-[40%] left-[20%] w-4 h-4 bg-red-600 rounded-full border-2 border-white z-20 pointer-events-none animate-pulse"
+              className="absolute top-[44%] left-[52%] w-4 h-4 bg-red-600 rounded-full border-2 border-white z-20 pointer-events-none"
+              style={{ boxShadow: '0 0 0 5px rgba(220,38,38,0.3)' }}
             />
+            {/* Fronthaube / Motorraum */}
             <motion.div
               aria-hidden="true"
               initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.2 }}
-              className="absolute top-[35%] left-[50%] w-4 h-4 bg-red-600 rounded-full border-2 border-white z-20 pointer-events-none animate-pulse"
+              className="absolute top-[54%] left-[66%] w-4 h-4 bg-red-600 rounded-full border-2 border-white z-20 pointer-events-none"
+              style={{ boxShadow: '0 0 0 5px rgba(220,38,38,0.3)' }}
             />
+            {/* Hinterer Reifen – Connector-Ziel */}
             <motion.div
               aria-hidden="true"
               initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.4 }}
-              className="absolute top-[45%] right-[25%] w-4 h-4 bg-red-600 rounded-full border-2 border-white z-20 pointer-events-none animate-pulse"
+              className="absolute top-[75%] left-[30%] w-4 h-4 bg-red-600 rounded-full border-2 border-white z-20 pointer-events-none"
+              style={{ boxShadow: '0 0 0 5px rgba(220,38,38,0.3)' }}
             />
 
             {/* Floor Shadow */}
