@@ -38,15 +38,15 @@ const hotspots = [
 ];
 
 export function Hero() {
-  const [activeHotspot, setActiveHotspot] = useState<string | null>(null);
-  const active = hotspots.find((h) => h.id === activeHotspot) ?? null;
+  const [activeHotspot, setActiveHotspot] = useState<string>('reifen');
+  const active = hotspots.find((h) => h.id === activeHotspot)!;
 
   const gridRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [lineCoords, setLineCoords] = useState<{ x1: number; y1: number; x2: number; y2: number } | null>(null);
 
   useEffect(() => {
-    if (!activeHotspot || !gridRef.current || !cardRef.current) {
+    if (!gridRef.current || !cardRef.current) {
       setLineCoords(null);
       return;
     }
@@ -94,51 +94,30 @@ export function Hero() {
             {/* ── Left Info Card (wechselt je nach Hotspot) ── Desktop Only */}
             <div className="hidden lg:flex lg:col-span-2 flex-col gap-4 relative">
               <AnimatePresence mode="wait">
-                {active ? (
-                  <motion.div
-                    key={active.id}
-                    initial={{ x: -30, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: -30, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-3xl relative group cursor-pointer"
-                    ref={cardRef}
-                    onClick={() => setActiveHotspot(null)}
-                  >
-                    <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-12 bg-red-600 rounded-full" />
-                    {active.image ? (
-                      <div className="relative w-full h-50 mb-3 rounded-2xl overflow-hidden">
-                        <Image src={active.image} alt={active.label} fill className="object-cover" />
-                      </div>
-                    ) : (
-                      <div className="flex justify-center mb-3">
-                        <div className="w-20 h-20 rounded-full bg-gray-800 flex items-center justify-center border-2 border-gray-700 shadow-lg">
-                          <active.icon className="w-10 h-10 text-gray-400" />
-                        </div>
-                      </div>
-                    )}
-                    <h3 className="text-red-500 font-bold text-lg mb-1">{active.label}</h3>
-                    <p className="text-gray-400 text-xs leading-relaxed">{active.description}</p>
-
-                  </motion.div>
-                ) : (
-                  /* Default: dezenter Hinweis */
-                  <motion.div
-                    key="placeholder"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-3xl text-center"
-                  >
+                <motion.div
+                  key={active.id}
+                  initial={{ x: -30, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -30, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-3xl relative"
+                  ref={cardRef}
+                >
+                  <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-12 bg-red-600 rounded-full" />
+                  {active.image ? (
+                    <div className="relative w-full h-50 mb-3 rounded-2xl overflow-hidden">
+                      <Image src={active.image} alt={active.label} fill className="object-cover" />
+                    </div>
+                  ) : (
                     <div className="flex justify-center mb-3">
-                      <div className="w-16 h-16 rounded-full bg-gray-800/60 flex items-center justify-center border border-gray-700/50">
-                        <Disc className="w-8 h-8 text-gray-500" />
+                      <div className="w-20 h-20 rounded-full bg-gray-800 flex items-center justify-center border-2 border-gray-700 shadow-lg">
+                        <active.icon className="w-10 h-10 text-gray-400" />
                       </div>
                     </div>
-                    <p className="text-gray-500 text-xs">Klicken Sie auf einen roten Punkt am Fahrzeug</p>
-                  </motion.div>
-                )}
+                  )}
+                  <h3 className="text-red-500 font-bold text-lg mb-1">{active.label}</h3>
+                  <p className="text-gray-400 text-xs leading-relaxed">{active.description}</p>
+                </motion.div>
               </AnimatePresence>
             </div>
 
@@ -178,7 +157,7 @@ export function Hero() {
                     initial={{ scale: 0 }}
                     animate={{ scale: activeHotspot === spot.id ? 1.4 : 1 }}
                     transition={{ delay: 1.0, type: 'spring', stiffness: 300 }}
-                    onClick={() => setActiveHotspot(activeHotspot === spot.id ? null : spot.id)}
+                    onClick={() => setActiveHotspot(spot.id)}
                     data-hotspot={spot.id}
                     style={{
                       position: 'absolute',
