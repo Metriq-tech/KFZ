@@ -1,10 +1,74 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
-import { Wrench, Star, Briefcase, Wifi, Disc } from 'lucide-react';
+import { Wrench, Star, Briefcase, Wifi, Disc, Settings, Shield } from 'lucide-react';
+
+/* ── Hotspot-Daten ── */
+const hotspots = [
+  {
+    id: 'reifen',
+    label: 'Reifen',
+    description: 'Kaufen Sie Reifen aus unserem Produktsortiment und fahren Sie sorgenfrei.',
+    image: '/images/Reifen.png',
+    icon: Disc,
+    // Position relativ zum Auto-Container
+    top: '60%',
+    left: '28%',
+  },
+  {
+    id: 'motor',
+    label: 'Motorhaube',
+    description: 'Professionelle Motordiagnose und Reparatur – schnell und zuverlässig.',
+    image: '/images/motor.avif',
+    icon: Settings,
+    top: '48%',
+    left: '60%',
+  },
+  {
+    id: 'scheibe',
+    label: 'Scheibe',
+    description: 'Steinschlag-Reparatur und Scheibentausch – direkt über die Versicherung.',
+    image: '/images/Frontscheibe6.png',
+    icon: Shield,
+    top: '40%',
+    left: '46%',
+  },
+];
 
 export function Hero() {
+  const [activeHotspot, setActiveHotspot] = useState<string | null>(null);
+  const active = hotspots.find((h) => h.id === activeHotspot) ?? null;
+
+  const gridRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [lineCoords, setLineCoords] = useState<{ x1: number; y1: number; x2: number; y2: number } | null>(null);
+
+  useEffect(() => {
+    if (!activeHotspot || !gridRef.current || !cardRef.current) {
+      setLineCoords(null);
+      return;
+    }
+    const updateLine = () => {
+      const grid = gridRef.current!.getBoundingClientRect();
+      const card = cardRef.current!.getBoundingClientRect();
+      const hotspotEl = gridRef.current!.querySelector(`[data-hotspot="${activeHotspot}"]`);
+      if (!hotspotEl) { setLineCoords(null); return; }
+      const hs = hotspotEl.getBoundingClientRect();
+      setLineCoords({
+        x1: card.right - grid.left,
+        y1: card.top + card.height / 2 - grid.top,
+        x2: hs.left + hs.width / 2 - grid.left,
+        y2: hs.top + hs.height / 2 - grid.top,
+      });
+    };
+    // small delay for AnimatePresence to finish
+    const t = setTimeout(updateLine, 350);
+    window.addEventListener('resize', updateLine);
+    return () => { clearTimeout(t); window.removeEventListener('resize', updateLine); };
+  }, [activeHotspot]);
+
   return (
     <section id="hero" style={{ backgroundColor: 'var(--color-dark)' }} className="relative h-screen text-white overflow-hidden pt-20 flex flex-col justify-center">
       {/* Background Gradients */}
@@ -25,36 +89,57 @@ export function Hero() {
           }}
         >
 
-          <div className="px-4 pt-4 pb-1 grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+          <div ref={gridRef} className="px-4 pt-4 pb-1 grid grid-cols-1 lg:grid-cols-12 gap-3 items-center relative">
 
-            {/* Left Floating Card (Tyres) - Desktop Only */}
-            <div className="hidden lg:flex lg:col-span-2 flex-col gap-4">
-              <motion.div
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-3xl relative group hover:bg-white/10 transition-colors"
-              >
-                <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-12 bg-red-600 rounded-full" />
-                <div className="flex justify-center mb-4">
-                  {/* Tyre Icon/Image Placeholder */}
-                  <div className="w-24 h-24 rounded-full bg-gray-800 flex items-center justify-center border-2 border-gray-700 shadow-lg">
-                    <Disc className="w-12 h-12 text-gray-400" />
-                  </div>
-                </div>
-                <h3 className="text-red-500 font-bold text-lg mb-1">Reifen</h3>
-                <p className="text-gray-400 text-xs leading-relaxed">
-                  Kaufen Sie Reifen aus unserem Produktsortiment und fahren Sie sorgenfrei.
-                </p>
+            {/* ── Left Info Card (wechselt je nach Hotspot) ── Desktop Only */}
+            <div className="hidden lg:flex lg:col-span-2 flex-col gap-4 relative">
+              <AnimatePresence mode="wait">
+                {active ? (
+                  <motion.div
+                    key={active.id}
+                    initial={{ x: -30, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: -30, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-3xl relative group cursor-pointer"
+                    ref={cardRef}
+                    onClick={() => setActiveHotspot(null)}
+                  >
+                    <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-12 bg-red-600 rounded-full" />
+                    {active.image ? (
+                      <div className="relative w-full h-50 mb-3 rounded-2xl overflow-hidden">
+                        <Image src={active.image} alt={active.label} fill className="object-cover" />
+                      </div>
+                    ) : (
+                      <div className="flex justify-center mb-3">
+                        <div className="w-20 h-20 rounded-full bg-gray-800 flex items-center justify-center border-2 border-gray-700 shadow-lg">
+                          <active.icon className="w-10 h-10 text-gray-400" />
+                        </div>
+                      </div>
+                    )}
+                    <h3 className="text-red-500 font-bold text-lg mb-1">{active.label}</h3>
+                    <p className="text-gray-400 text-xs leading-relaxed">{active.description}</p>
 
-                {/* Connector Line → docks to rear-tyre hotspot on car */}
-                <div
-                  className="absolute hidden xl:block"
-                  style={{ right: '-105%', top: '77%', width: '105%', height: '1px', backgroundColor: 'rgba(220,38,38,0.7)', zIndex: 40 }}
-                >
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-red-600 rounded-full border-2 border-white shadow-lg shadow-red-900/50" />
-                </div>
-              </motion.div>
+                  </motion.div>
+                ) : (
+                  /* Default: dezenter Hinweis */
+                  <motion.div
+                    key="placeholder"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-3xl text-center"
+                  >
+                    <div className="flex justify-center mb-3">
+                      <div className="w-16 h-16 rounded-full bg-gray-800/60 flex items-center justify-center border border-gray-700/50">
+                        <Disc className="w-8 h-8 text-gray-500" />
+                      </div>
+                    </div>
+                    <p className="text-gray-500 text-xs">Klicken Sie auf einen roten Punkt am Fahrzeug</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Center Content (Car & Title) */}
@@ -64,7 +149,7 @@ export function Hero() {
                 animate={{ y: 0, opacity: 1 }}
                 className="text-3xl md:text-4xl font-display font-bold mb-1 leading-tight"
               >
-                Wir behandeln Sie & Ihr Auto <br />
+                Wir behandeln Sie &amp; Ihr Auto <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Wie Familie</span>
               </motion.h1>
 
@@ -85,29 +170,28 @@ export function Hero() {
                   priority
                 />
 
-                {/* ── Hotspot: Hinteres Rad (links-unten) ── */}
-                <motion.div
-                  aria-hidden="true"
-                  initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.4 }}
-                  style={{ position: 'absolute', top: '60%', left: '28%', zIndex: 30, boxShadow: '0 0 0 6px rgba(220,38,38,0.35)' }}
-                  className="w-4 h-4 bg-red-600 rounded-full border-2 border-white pointer-events-none"
-                />
-
-                {/* ── Hotspot: Motorhaube / Fronthaube ── */}
-                <motion.div
-                  aria-hidden="true"
-                  initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.2 }}
-                  style={{ position: 'absolute', top: '48%', left: '60%', zIndex: 30, boxShadow: '0 0 0 6px rgba(220,38,38,0.35)' }}
-                  className="w-4 h-4 bg-red-600 rounded-full border-2 border-white pointer-events-none"
-                />
-
-                {/* ── Hotspot: Scheibe ── */}
-                <motion.div
-                  aria-hidden="true"
-                  initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.0 }}
-                  style={{ position: 'absolute', top: '40%', left: '46%', zIndex: 30, boxShadow: '0 0 0 6px rgba(220,38,38,0.35)' }}
-                  className="w-4 h-4 bg-red-600 rounded-full border-2 border-white pointer-events-none"
-                />
+                {/* ── Interaktive Hotspots ── */}
+                {hotspots.map((spot) => (
+                  <motion.button
+                    key={spot.id}
+                    aria-label={spot.label}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: activeHotspot === spot.id ? 1.4 : 1 }}
+                    transition={{ delay: 1.0, type: 'spring', stiffness: 300 }}
+                    onClick={() => setActiveHotspot(activeHotspot === spot.id ? null : spot.id)}
+                    data-hotspot={spot.id}
+                    style={{
+                      position: 'absolute',
+                      top: spot.top,
+                      left: spot.left,
+                      zIndex: 30,
+                      boxShadow: activeHotspot === spot.id
+                        ? '0 0 0 8px rgba(220,38,38,0.5), 0 0 20px rgba(220,38,38,0.3)'
+                        : '0 0 0 6px rgba(220,38,38,0.35)',
+                    }}
+                    className="w-4 h-4 bg-red-600 rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform"
+                  />
+                ))}
 
                 {/* Floor Shadow */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[20%] bg-black/60 blur-3xl" style={{ zIndex: 5 }} />
@@ -115,6 +199,19 @@ export function Hero() {
 
 
             </div>
+
+            {/* SVG Connector Line – from card to active hotspot */}
+            {lineCoords && (
+              <svg className="absolute inset-0 w-full h-full pointer-events-none hidden xl:block" style={{ zIndex: 40, overflow: 'visible' }}>
+                <line
+                  x1={lineCoords.x1} y1={lineCoords.y1}
+                  x2={lineCoords.x2} y2={lineCoords.y2}
+                  stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" strokeDasharray="6 4"
+                />
+                <circle cx={lineCoords.x1} cy={lineCoords.y1} r="4" fill="rgba(255,255,255,0.4)" stroke="rgba(255,255,255,0.6)" strokeWidth="1" />
+                <circle cx={lineCoords.x2} cy={lineCoords.y2} r="5" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" />
+              </svg>
+            )}
 
             {/* Right Floating Cards - Desktop Only */}
             <div className="hidden lg:flex lg:col-span-2 flex-col gap-6 justify-center">
