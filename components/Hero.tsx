@@ -17,7 +17,7 @@ export function Hero() {
       {/* ── Hero Frame Card (wie Referenz-Bild) ── */}
       <div className="container mx-auto px-4 relative z-10 py-4">
         <div
-          className="rounded-[2rem] border border-white/20 overflow-hidden"
+          className="rounded-[2rem] border border-white/20"
           style={{
             background: 'linear-gradient(135deg, rgba(20,20,20,0.85) 0%, rgba(10,10,10,0.95) 100%)',
             backdropFilter: 'blur(20px)',
@@ -70,7 +70,7 @@ export function Hero() {
 
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
+                animate={{ scale: 1.5, opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
                 className="relative w-[120%] -ml-[10%] h-[600px] my-0"
               >
@@ -89,7 +89,7 @@ export function Hero() {
                 <motion.div
                   aria-hidden="true"
                   initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.4 }}
-                  style={{ position: 'absolute', top: '62%', left: '26%', zIndex: 30, boxShadow: '0 0 0 6px rgba(220,38,38,0.35)' }}
+                  style={{ position: 'absolute', top: '60%', left: '28%', zIndex: 30, boxShadow: '0 0 0 6px rgba(220,38,38,0.35)' }}
                   className="w-4 h-4 bg-red-600 rounded-full border-2 border-white pointer-events-none"
                 />
 
@@ -97,15 +97,15 @@ export function Hero() {
                 <motion.div
                   aria-hidden="true"
                   initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.2 }}
-                  style={{ position: 'absolute', top: '48%', left: '66%', zIndex: 30, boxShadow: '0 0 0 6px rgba(220,38,38,0.35)' }}
+                  style={{ position: 'absolute', top: '48%', left: '60%', zIndex: 30, boxShadow: '0 0 0 6px rgba(220,38,38,0.35)' }}
                   className="w-4 h-4 bg-red-600 rounded-full border-2 border-white pointer-events-none"
                 />
 
-                {/* ── Hotspot: Karosserie / Dach ── */}
+                {/* ── Hotspot: Scheibe ── */}
                 <motion.div
                   aria-hidden="true"
                   initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.0 }}
-                  style={{ position: 'absolute', top: '36%', left: '46%', zIndex: 30, boxShadow: '0 0 0 6px rgba(220,38,38,0.35)' }}
+                  style={{ position: 'absolute', top: '40%', left: '46%', zIndex: 30, boxShadow: '0 0 0 6px rgba(220,38,38,0.35)' }}
                   className="w-4 h-4 bg-red-600 rounded-full border-2 border-white pointer-events-none"
                 />
 
