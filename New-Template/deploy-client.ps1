@@ -56,6 +56,10 @@ if (Test-Path $ClientDir) {
 }
 New-Item $ClientDir -ItemType Directory -Force | Out-Null
 robocopy $OutDir $ClientDir /E /NFL /NDL /NJH /NJS | Out-Null
+# .nojekyll sicherstellen (GitHub Pages ignoriert sonst _next/)
+if (-not (Test-Path (Join-Path $ClientDir ".nojekyll"))) {
+    New-Item (Join-Path $ClientDir ".nojekyll") -ItemType File -Force | Out-Null
+}
 Write-Host "    Kopiert ✓" -ForegroundColor Green
 
 # ── Schritt 4: Git commit ─────────────────────────────────────

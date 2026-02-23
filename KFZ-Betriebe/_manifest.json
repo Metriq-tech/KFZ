@@ -1,0 +1,338 @@
+[
+  {
+    "name": "Autowerkstatt Altona",
+    "slug": "autowerkstatt-altona",
+    "path": "KFZ-Betriebe/autowerkstatt-altona/preview.html",
+    "email": "info@autoaltona.de",
+    "website": "http://www.autoaltona.de/"
+  },
+  {
+    "name": "Oleg Ovcharenko KFZ-Werkstatt",
+    "slug": "oleg-ovcharenko-kfz-werkstatt",
+    "path": "KFZ-Betriebe/oleg-ovcharenko-kfz-werkstatt/preview.html",
+    "email": "",
+    "website": ""
+  },
+  {
+    "name": "Samuel Autohaus",
+    "slug": "samuel-autohaus",
+    "path": "KFZ-Betriebe/samuel-autohaus/preview.html",
+    "email": "",
+    "website": ""
+  },
+  {
+    "name": "K&S KFZ Meisterwerkstatt & Gutachtenerstellung",
+    "slug": "kunds-kfz-meisterwerkstatt-und-gutachtenerstellung",
+    "path": "KFZ-Betriebe/kunds-kfz-meisterwerkstatt-und-gutachtenerstellung/preview.html",
+    "email": "kontakt@ks-meisterwerkstatt.de",
+    "website": "https://kskfzmeister.de/"
+  },
+  {
+    "name": "Autohelden KFZ-Meisterbetrieb",
+    "slug": "autohelden-kfz-meisterbetrieb",
+    "path": "KFZ-Betriebe/autohelden-kfz-meisterbetrieb/preview.html",
+    "email": "gurbuz@autohelden.de",
+    "website": "https://www.autohelden.de/"
+  },
+  {
+    "name": "Eugen Blumenstein Kfz-Meisterbetrieb",
+    "slug": "eugen-blumenstein-kfz-meisterbetrieb",
+    "path": "KFZ-Betriebe/eugen-blumenstein-kfz-meisterbetrieb/preview.html",
+    "email": "",
+    "website": ""
+  },
+  {
+    "name": "KFZ-Meister-Betrieb Frank Gollnick",
+    "slug": "kfz-meister-betrieb-frank-gollnick",
+    "path": "KFZ-Betriebe/kfz-meister-betrieb-frank-gollnick/preview.html",
+    "email": "bewerbungen@kfz-meister-betrieb.de",
+    "website": "http://www.kfz-meister-betrieb.de/"
+  },
+  {
+    "name": "KFZ-Meisterbetrieb A-B GmbH",
+    "slug": "kfz-meisterbetrieb-a-b-gmbh",
+    "path": "KFZ-Betriebe/kfz-meisterbetrieb-a-b-gmbh/preview.html",
+    "email": "info@kfzab.de",
+    "website": "https://kfzab.de/"
+  },
+  {
+    "name": "KFZ-Werkstatt Olaf Eitner",
+    "slug": "kfz-werkstatt-olaf-eitner",
+    "path": "KFZ-Betriebe/kfz-werkstatt-olaf-eitner/preview.html",
+    "email": "info@eitner-kfz.com",
+    "website": "https://eitner-kfz.com/"
+  },
+  {
+    "name": "Auto-Service Albrecht",
+    "slug": "auto-service-albrecht",
+    "path": "KFZ-Betriebe/auto-service-albrecht/preview.html",
+    "email": "",
+    "website": ""
+  },
+  {
+    "name": "Weitze Kfz-Meisterbetrieb",
+    "slug": "weitze-kfz-meisterbetrieb",
+    "path": "KFZ-Betriebe/weitze-kfz-meisterbetrieb/preview.html",
+    "email": "info@kfz-weitze.de",
+    "website": "http://www.kfz-weitze.de/"
+  },
+  {
+    "name": "No Limit KFZ-Meisterbetrieb Bosch Modul - Partner",
+    "slug": "no-limit-kfz-meisterbetrieb-bosch-modul-partner",
+    "path": "KFZ-Betriebe/no-limit-kfz-meisterbetrieb-bosch-modul-partner/preview.html",
+    "email": "info@no-limit-kfz-meisterbetrieb.de",
+    "website": "http://www.no-limit-kfz-meisterbetrieb.de/"
+  },
+  {
+    "name": "König Kfz Meisterbetrieb",
+    "slug": "koenig-kfz-meisterbetrieb",
+    "path": "KFZ-Betriebe/koenig-kfz-meisterbetrieb/preview.html",
+    "email": "info@koenigkfzmb.de",
+    "website": "https://www.koenigkfzmb.de/"
+  },
+  {
+    "name": "Hamburgs GaRage G.B. & R.S. GmbH",
+    "slug": "hamburgs-garage-gb-und-rs-gmbh",
+    "path": "KFZ-Betriebe/hamburgs-garage-gb-und-rs-gmbh/preview.html",
+    "email": "info@hamburgsgarage.de",
+    "website": "http://www.hamburgsgarage.de/"
+  },
+  {
+    "name": "Kfz-Meister Eder: Autowerkstatt Hamburg Stellingen",
+    "slug": "kfz-meister-eder-autowerkstatt-hamburg-stellingen",
+    "path": "KFZ-Betriebe/kfz-meister-eder-autowerkstatt-hamburg-stellingen/preview.html",
+    "email": "anfrage@ihre-kfz-werkstatt-hh.de",
+    "website": "https://www.ihre-kfz-werkstatt-hh.de/"
+  },
+  {
+    "name": "Kfz Meisterwerkstatt MTG",
+    "slug": "kfz-meisterwerkstatt-mtg",
+    "path": "KFZ-Betriebe/kfz-meisterwerkstatt-mtg/preview.html",
+    "email": "info@auto-mtg.de",
+    "website": "http://www.auto-mtg.de/"
+  },
+  {
+    "name": "Auto Technik Wandsbek",
+    "slug": "auto-technik-wandsbek",
+    "path": "KFZ-Betriebe/auto-technik-wandsbek/preview.html",
+    "email": "info@autotechnik-wandsbek.de",
+    "website": "https://autotechnikwandsbek.de/"
+  },
+  {
+    "name": "A. & H. Schwarz Autotechnik GmbH",
+    "slug": "a-und-h-schwarz-autotechnik-gmbh",
+    "path": "KFZ-Betriebe/a-und-h-schwarz-autotechnik-gmbh/preview.html",
+    "email": "kfz.schwarz@t-online.de",
+    "website": "https://ahschwarzautotechnik.de/"
+  },
+  {
+    "name": "Stop+go Die Autowerkstatt Hamburg",
+    "slug": "stopundgo-die-autowerkstatt-hamburg",
+    "path": "KFZ-Betriebe/stopundgo-die-autowerkstatt-hamburg/preview.html",
+    "email": "hamburg-kieler-strasse@stopandgo.de",
+    "website": "http://www.stopandgo.de/"
+  },
+  {
+    "name": "Auto Werkstatt",
+    "slug": "auto-werkstatt",
+    "path": "KFZ-Betriebe/auto-werkstatt/preview.html",
+    "email": "",
+    "website": ""
+  },
+  {
+    "name": "Kfz Werkstatt Berlin GmbH - Hamburg",
+    "slug": "kfz-werkstatt-berlin-gmbh-hamburg",
+    "path": "KFZ-Betriebe/kfz-werkstatt-berlin-gmbh-hamburg/preview.html",
+    "email": "info@kfz-werkstatt-berlin.com",
+    "website": "http://www.kfz-werkstatt-berlin.com/"
+  },
+  {
+    "name": "Bosch Car Service ATB Auto Technik Bramfeld",
+    "slug": "bosch-car-service-atb-auto-technik-bramfeld",
+    "path": "KFZ-Betriebe/bosch-car-service-atb-auto-technik-bramfeld/preview.html",
+    "email": "e.guenes@autotechnik-bramfeld.de",
+    "website": "https://www.autotechnik-bramfeld.de/"
+  },
+  {
+    "name": "Holger Hansen KFZ-Meisterbetrieb",
+    "slug": "holger-hansen-kfz-meisterbetrieb",
+    "path": "KFZ-Betriebe/holger-hansen-kfz-meisterbetrieb/preview.html",
+    "email": "kfz@holgerhansen.de",
+    "website": "http://www.holgerhansen.de/"
+  },
+  {
+    "name": "Autowerk",
+    "slug": "autowerk",
+    "path": "KFZ-Betriebe/autowerk/preview.html",
+    "email": "info@autowerk24.de",
+    "website": "http://www.autowerk24-hamburg.de/"
+  },
+  {
+    "name": "Der Renner Kfz-Autowerkstatt Hamburg",
+    "slug": "der-renner-kfz-autowerkstatt-hamburg",
+    "path": "KFZ-Betriebe/der-renner-kfz-autowerkstatt-hamburg/preview.html",
+    "email": "alikosar@hotmail.de",
+    "website": "https://www.auto-kosar.de/"
+  },
+  {
+    "name": "Auto Haake GmbH - Autowerkstatt in Hamburg",
+    "slug": "auto-haake-gmbh-autowerkstatt-in-hamburg",
+    "path": "KFZ-Betriebe/auto-haake-gmbh-autowerkstatt-in-hamburg/preview.html",
+    "email": "info@autohaake.de",
+    "website": "http://autohaake.de/"
+  },
+  {
+    "name": "Auto Service Zentrum HH Stellingen",
+    "slug": "auto-service-zentrum-hh-stellingen",
+    "path": "KFZ-Betriebe/auto-service-zentrum-hh-stellingen/preview.html",
+    "email": "info@aszhh.de",
+    "website": "http://www.aszhh.de/"
+  },
+  {
+    "name": "Autowerkstatt Hammerbrook",
+    "slug": "autowerkstatt-hammerbrook",
+    "path": "KFZ-Betriebe/autowerkstatt-hammerbrook/preview.html",
+    "email": "meisterbetriebwaisi@gmail.com",
+    "website": "http://www.autowerkstatt-hammerbrook.com/"
+  },
+  {
+    "name": "KFZ SERVICE Kai Hansen Hamburg",
+    "slug": "kfz-service-kai-hansen-hamburg",
+    "path": "KFZ-Betriebe/kfz-service-kai-hansen-hamburg/preview.html",
+    "email": "info@kfz-service-kai-hansen.de",
+    "website": "http://www.kaihansenhh.de/"
+  },
+  {
+    "name": "Ömer Zor Kfz-Werkstatt",
+    "slug": "oemer-zor-kfz-werkstatt",
+    "path": "KFZ-Betriebe/oemer-zor-kfz-werkstatt/preview.html",
+    "email": "",
+    "website": ""
+  },
+  {
+    "name": "KFZ Werkstatt Hamburg GmbH",
+    "slug": "kfz-werkstatt-hamburg-gmbh",
+    "path": "KFZ-Betriebe/kfz-werkstatt-hamburg-gmbh/preview.html",
+    "email": "masudasoumma@kfzwerkstatthamburg.de",
+    "website": "http://www.kfzwerkstatthamburg.de/"
+  },
+  {
+    "name": "EGE KFZ Meisterbetrieb",
+    "slug": "ege-kfz-meisterbetrieb",
+    "path": "KFZ-Betriebe/ege-kfz-meisterbetrieb/preview.html",
+    "email": "kfzegewerkstatt@gmail.com",
+    "website": "http://egekfz.de/"
+  },
+  {
+    "name": "KFZ Service Hamburg",
+    "slug": "kfz-service-hamburg",
+    "path": "KFZ-Betriebe/kfz-service-hamburg/preview.html",
+    "email": "",
+    "website": ""
+  },
+  {
+    "name": "Hansa Autoreparatur",
+    "slug": "hansa-autoreparatur",
+    "path": "KFZ-Betriebe/hansa-autoreparatur/preview.html",
+    "email": "info@hansa-autoreparatur.de",
+    "website": "https://www.hansa-autoreparatur.de/"
+  },
+  {
+    "name": "KFZ-SERVICE-WERKSTATT.DE",
+    "slug": "kfz-service-werkstattde",
+    "path": "KFZ-Betriebe/kfz-service-werkstattde/preview.html",
+    "email": "info@kfz-service-werkstatt.de",
+    "website": "https://www.kfz-service-werkstatt.de/"
+  },
+  {
+    "name": "Freie Werkstatt Hamburg",
+    "slug": "freie-werkstatt-hamburg",
+    "path": "KFZ-Betriebe/freie-werkstatt-hamburg/preview.html",
+    "email": "masudasoumma@freiewerkstatthamburg.de",
+    "website": "https://www.freiewerkstatthamburg.de/"
+  },
+  {
+    "name": "Weber Karosseriefachbetrieb",
+    "slug": "weber-karosseriefachbetrieb",
+    "path": "KFZ-Betriebe/weber-karosseriefachbetrieb/preview.html",
+    "email": "info@weber-karosserie.de",
+    "website": "http://www.weber-karosserie.de/"
+  },
+  {
+    "name": "Dirik Kfz-Reparaturen GmbH",
+    "slug": "dirik-kfz-reparaturen-gmbh",
+    "path": "KFZ-Betriebe/dirik-kfz-reparaturen-gmbh/preview.html",
+    "email": "",
+    "website": ""
+  },
+  {
+    "name": "KRZ Karosserie Reparatur Zentrum",
+    "slug": "krz-karosserie-reparatur-zentrum",
+    "path": "KFZ-Betriebe/krz-karosserie-reparatur-zentrum/preview.html",
+    "email": "info@karosserie-zentrum.de",
+    "website": "http://www.karosserie-zentrum.de/"
+  },
+  {
+    "name": "Karosserie-Meisterbetrieb Stephan Seifert",
+    "slug": "karosserie-meisterbetrieb-stephan-seifert",
+    "path": "KFZ-Betriebe/karosserie-meisterbetrieb-stephan-seifert/preview.html",
+    "email": "",
+    "website": ""
+  },
+  {
+    "name": "AG Meister-Fachbetrieb",
+    "slug": "ag-meister-fachbetrieb",
+    "path": "KFZ-Betriebe/ag-meister-fachbetrieb/preview.html",
+    "email": "info@agmeisterfachbetrieb.de",
+    "website": "https://www.agmeisterfachbetrieb.de/"
+  },
+  {
+    "name": "Karo Plus Center Hamburg",
+    "slug": "karo-plus-center-hamburg",
+    "path": "KFZ-Betriebe/karo-plus-center-hamburg/preview.html",
+    "email": "heide@karo.plus",
+    "website": "http://www.karo.plus/"
+  },
+  {
+    "name": "Bergedorfer Autolackiererei e.K.",
+    "slug": "bergedorfer-autolackiererei-ek",
+    "path": "KFZ-Betriebe/bergedorfer-autolackiererei-ek/preview.html",
+    "email": "murat@bal-hamburg.de",
+    "website": "http://www.bal-hamburg.de/"
+  },
+  {
+    "name": "AutoService-Helmer e.K. KFZ-Meisterbetrieb",
+    "slug": "autoservice-helmer-ek-kfz-meisterbetrieb",
+    "path": "KFZ-Betriebe/autoservice-helmer-ek-kfz-meisterbetrieb/preview.html",
+    "email": "w.helmer@autoservice-helmer.de",
+    "website": "http://autoservice-helmer.de/"
+  },
+  {
+    "name": "Lackiererei Thielemann",
+    "slug": "lackiererei-thielemann",
+    "path": "KFZ-Betriebe/lackiererei-thielemann/preview.html",
+    "email": "info@lackiererei-thielemann.de",
+    "website": "http://www.lackiererei-thielemann.de/"
+  },
+  {
+    "name": "Lackdocs Hamburg GmbH",
+    "slug": "lackdocs-hamburg-gmbh",
+    "path": "KFZ-Betriebe/lackdocs-hamburg-gmbh/preview.html",
+    "email": "info@lackdocs-hamburg.de",
+    "website": "http://www.lackdocs-hamburg.de/"
+  },
+  {
+    "name": "BünSal Autolackiererei",
+    "slug": "buensal-autolackiererei",
+    "path": "KFZ-Betriebe/buensal-autolackiererei/preview.html",
+    "email": "babacan-salim@gmx.de",
+    "website": "https://www.autolackiererei-buensal.de/"
+  },
+  {
+    "name": "Smart Repair Center Autolack Doc",
+    "slug": "smart-repair-center-autolack-doc",
+    "path": "KFZ-Betriebe/smart-repair-center-autolack-doc/preview.html",
+    "email": "a.biglari@auto-lack-doc.de",
+    "website": "http://www.auto-lack-doc.de/"
+  }
+]
