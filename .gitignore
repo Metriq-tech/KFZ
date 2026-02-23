@@ -29,3 +29,6 @@ New-Template/next-env.d.ts
 
 # Agent Skills (lokale Skill-Repos)
 .agent/
+
+#  IDE -
+*.code-workspace
