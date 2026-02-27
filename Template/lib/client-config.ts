@@ -27,7 +27,7 @@ export const clientConfig: ClientConfig = {
     // ───── Branding ─────
     branding: {
         logoLetter: 'F',
-        brandName: 'Freie Werkstatt Hamburg',
+        brandName: 'FREIE WERKSTATT',
         fullName: 'Freie Werkstatt Hamburg',
         // Logo-Datei hier ablegen: KFZ-Betriebe/freie-werkstatt-hamburg/logo.png
         // logoImage: '/images/logo.png',
@@ -119,7 +119,7 @@ export const clientConfig: ClientConfig = {
         {
             title: 'Bremsen & Fahrwerk',
             description: 'Bremsbeläge, Bremsscheiben, Stoßdämpfer und Achsvermessung – professionell und zum Festpreis.',
-            image: '/mocks/bremse.avif',
+            image: '/mocks/bremsen.avif',
             iconName: 'shield',
         },
         {
@@ -137,7 +137,7 @@ export const clientConfig: ClientConfig = {
         {
             title: 'Karosserie & Lack',
             description: 'Karosserieschäden beheben und Lackierarbeiten in Fachbetriebsqualität – vom Kratzer bis zum Unfallschaden.',
-            image: '/mocks/karosseriebau.avif',
+            image: '/mocks/Frontscheibe6.png',
             iconName: 'layers',
         },
         {
@@ -189,6 +189,6 @@ export const clientConfig: ClientConfig = {
     hotspots: [
         { id: 'reifen', label: 'Reifen', description: 'Reifenwechsel und Reifenservice – sicher unterwegs zu jeder Jahreszeit.', image: '/images/Reifen.png', top: '60%', left: '28%', iconName: 'disc' },
         { id: 'motor', label: 'Motor', description: 'Motorinstandsetzung, Steuerkette und Zahnriemen – alles aus einer Hand.', image: '/mocks/motor.avif', top: '48%', left: '60%', iconName: 'settings' },
-        { id: 'scheibe', label: 'Scheibe', description: 'Glasreparatur und Scheibentausch – schnell und unkompliziert.', image: '/mocks/Frontscheibe6.png', top: '40%', left: '46%', iconName: 'shield' },
+        { id: 'scheibe', label: 'Scheibe', description: 'Glasreparatur und Scheibentausch – schnell und unkompliziert.', image: '/mocks/Reparatur_Frontscheibe1.avif', top: '40%', left: '46%', iconName: 'shield' },
     ],
 };
