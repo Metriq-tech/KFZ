@@ -23,6 +23,15 @@ export function Hero() {
   const [activeHotspot, setActiveHotspot] = useState<string>(clientConfig.hotspots[0]?.id || '');
   const active = hotspots.find((h) => h.id === activeHotspot)!;
 
+  // Responsive car zoom: 1.3 on desktop, 1.0 on mobile (no overflow)
+  const [carScale, setCarScale] = useState(1);
+  useEffect(() => {
+    const update = () => setCarScale(window.innerWidth >= 1024 ? 1.3 : 1);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
   const gridRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [lineCoords, setLineCoords] = useState<{ x1: number; y1: number; x2: number; y2: number } | null>(null);
@@ -141,7 +150,7 @@ export function Hero() {
 
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
+                animate={{ scale: carScale, opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
                 className="relative w-full h-[280px] sm:h-[380px] lg:h-[600px] my-0 lg:w-[120%] lg:-ml-[10%]"
               >
