@@ -6,9 +6,12 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { clientConfig } from '@/lib/client-config';
 
-const navLinks = [
+const navLinksLeft = [
   { label: 'Home', href: 'hero' },
   { label: 'Über Uns', href: 'features' },
+];
+
+const navLinksRight = [
   { label: 'Bewertungen', href: 'testimonials' },
   { label: 'Kontakt', href: 'contact' },
 ];
@@ -76,8 +79,8 @@ export function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1">
 
-            {/* Normale Links */}
-            {navLinks.map((link) => (
+            {/* Home + Über Uns */}
+            {navLinksLeft.map((link) => (
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
@@ -136,6 +139,24 @@ export function Navbar() {
               </AnimatePresence>
             </div>
 
+            {/* Bewertungen + Kontakt */}
+            {navLinksRight.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => scrollToSection(link.href)}
+                className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors hover:text-brand ${isActive(link.href) ? 'text-brand' : 'text-gray-300'
+                  }`}
+              >
+                {link.label}
+                {isActive(link.href) && (
+                  <motion.span
+                    layoutId="active-underline"
+                    className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand rounded-full"
+                  />
+                )}
+              </button>
+            ))}
+
             {/* CTA Button */}
             <button
               onClick={() => scrollToSection('contact')}
@@ -169,7 +190,7 @@ export function Navbar() {
             className="md:hidden bg-black/95 border-b border-white/10"
           >
             <div className="px-4 pt-2 pb-4 space-y-1">
-              {[...navLinks, { label: 'Services', href: 'services' }].map((link) => (
+              {[...navLinksLeft, { label: 'Services', href: 'services' }, ...navLinksRight].map((link) => (
                 <button
                   key={link.href}
                   onClick={() => { scrollToSection(link.href); setIsOpen(false); }}

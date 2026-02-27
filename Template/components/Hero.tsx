@@ -56,7 +56,7 @@ export function Hero() {
   }, [activeHotspot]);
 
   return (
-    <section id="hero" style={{ backgroundColor: 'var(--color-dark)' }} className="relative h-screen text-white overflow-hidden pt-20 flex flex-col justify-center">
+    <section id="hero" style={{ backgroundColor: 'var(--color-dark)' }} className="relative min-h-screen text-white pt-20 flex flex-col justify-center">
       {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-brand-dark/20 blur-[120px] rounded-full" />
@@ -67,7 +67,7 @@ export function Hero() {
       {/* â”€â”€ Hero Frame Card (wie Referenz-Bild) â”€â”€ */}
       <div className="container mx-auto px-4 relative z-10 py-4">
         <div
-          className="rounded-[2rem] border border-white/20"
+          className="rounded-xl sm:rounded-[2rem] border border-white/20"
           style={{
             background: 'linear-gradient(135deg, rgba(20,20,20,0.85) 0%, rgba(10,10,10,0.95) 100%)',
             backdropFilter: 'blur(20px)',
@@ -75,7 +75,7 @@ export function Hero() {
           }}
         >
 
-          <div ref={gridRef} className="px-4 pt-4 pb-1 grid grid-cols-1 lg:grid-cols-12 gap-3 items-center relative">
+          <div ref={gridRef} className="px-2 sm:px-4 pt-4 pb-1 grid grid-cols-1 lg:grid-cols-12 gap-3 items-center relative">
 
             {/* â”€â”€ Left Info Card (wechselt je nach Hotspot) â”€â”€ Desktop Only */}
             <div className="hidden lg:flex lg:col-span-2 flex-col gap-4 relative">
@@ -112,17 +112,38 @@ export function Hero() {
               <motion.h1
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="text-3xl md:text-4xl font-display font-bold mb-1 leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-1 leading-tight"
               >
                 {clientConfig.hero.headlineLine1} <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">{clientConfig.hero.headlineLine2}</span>
               </motion.h1>
 
+              {/* Mobile CTA — visible only on mobile, sits just above car image */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="lg:hidden mb-3 flex gap-3"
+              >
+                <button
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="flex-1 min-h-[44px] bg-brand hover:bg-brand-dark text-white font-bold py-3 rounded-xl transition-colors text-sm shadow-lg cursor-pointer"
+                >
+                  Termin buchen
+                </button>
+                <a
+                  href={`tel:${clientConfig.contact.phone}`}
+                  className="min-h-[44px] min-w-[44px] flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition-colors text-sm cursor-pointer px-4 font-medium"
+                >
+                  Anrufen
+                </a>
+              </motion.div>
+
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1.5, opacity: 1 }}
+                animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
-                className="relative w-[120%] -ml-[10%] h-[600px] my-0"
+                className="relative w-full h-[280px] sm:h-[380px] lg:h-[600px] my-0 lg:w-[120%] lg:-ml-[10%]"
               >
                 {/* Car Image â€“ z-10 so hotspots (z-30) sit on top */}
                 <Image
@@ -154,7 +175,7 @@ export function Hero() {
                         ? `0 0 0 8px color-mix(in srgb, var(--color-primary) 50%, transparent), 0 0 20px color-mix(in srgb, var(--color-primary) 30%, transparent)`
                         : `0 0 0 6px color-mix(in srgb, var(--color-primary) 35%, transparent)`,
                     }}
-                    className="w-4 h-4 bg-brand rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform"
+                    className="hidden sm:block w-4 h-4 bg-brand rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform"
                   />
                 ))}
 
@@ -211,7 +232,7 @@ export function Hero() {
                 <p className="text-gray-400 text-xs mb-4">
                   Buchen Sie jetzt Ihren Service und vermeiden Sie Wartezeiten!
                 </p>
-                <button className="w-full bg-brand hover:bg-brand-dark text-white text-sm font-bold py-2 rounded-xl transition-colors shadow-lg shadow-brand-dark/20">
+                <button className="w-full bg-brand hover:bg-brand-dark text-white text-sm font-bold py-2 rounded-xl transition-colors shadow-lg shadow-brand-dark/20 cursor-pointer">
                   Termin Buchen
                 </button>
               </motion.div>
@@ -219,7 +240,7 @@ export function Hero() {
           </div>{/* end grid */}
 
           {/* Bottom Stats Bar â€“ inside frame */}
-          <div className="px-6 pt-0 pb-3">
+          <div className="px-2 sm:px-6 pt-0 pb-3">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {clientConfig.stats.map((stat, index) => {
                 const StatIcon = [Wrench, Star, Briefcase, Wifi][index] ?? Wrench;
@@ -229,7 +250,7 @@ export function Hero() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.8 + (index * 0.1) }}
-                    className="bg-white/5 border border-white/5 rounded-2xl p-4 flex items-center gap-3 hover:bg-white/10 transition-colors"
+                    className="bg-white/5 border border-white/5 rounded-xl sm:rounded-2xl p-2 sm:p-4 flex items-center gap-2 sm:gap-3 hover:bg-white/10 transition-colors cursor-pointer"
                   >
                     <div className="p-2 bg-white/10 rounded-full">
                       <StatIcon className="w-4 h-4 text-gray-300" />
@@ -247,18 +268,18 @@ export function Hero() {
         </div>{/* end frame card */}
       </div>{/* end container */}
 
-      {/* Mobile Cards Strip â€“ nur auf Mobile/Tablet sichtbar */}
+      {/* Mobile Cards Strip — nur auf Mobile/Tablet sichtbar */}
       <div className="lg:hidden container mx-auto px-4 pb-6">
-        <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-none">
+        <div className="grid grid-cols-2 gap-3">
           {/* Services Mini-Card */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="flex-shrink-0 snap-start bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-2xl min-w-[200px]"
+            className="bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-2xl"
           >
             <div className="bg-brand text-white text-xs font-bold px-2 py-1 rounded-full inline-block mb-3">
-              Auto Services
+              Services
             </div>
             <ul className="space-y-1 text-sm text-gray-400">
               <li>Ölwechsel</li>
@@ -273,31 +294,23 @@ export function Hero() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.65 }}
-            className="flex-shrink-0 snap-start bg-[#1a1a1a] border border-white/10 p-4 rounded-2xl min-w-[200px] relative overflow-hidden"
+            className="bg-[#1a1a1a] border border-white/10 p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between"
           >
             <div className="absolute top-0 right-0 w-16 h-16 bg-brand/20 blur-2xl rounded-full" />
-            <h4 className="text-brand font-bold mb-1 text-sm">Termin sichern</h4>
-            <p className="text-gray-400 text-xs mb-3">Kein Warten â€“ direkt online buchen!</p>
-            <button className="w-full bg-brand hover:bg-brand-dark text-white text-xs font-bold py-2 rounded-xl transition-colors">
-              Termin Buchen
-            </button>
-          </motion.div>
-
-          {/* Reifen-Card */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="flex-shrink-0 snap-start bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-2xl min-w-[160px]"
-          >
-            <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center border-2 border-gray-700 mx-auto mb-3">
-              <Disc className="w-6 h-6 text-gray-400" />
+            <div>
+              <h4 className="text-brand font-bold mb-1 text-sm">Termin sichern</h4>
+              <p className="text-gray-400 text-xs mb-3 leading-relaxed">Kein Warten &mdash; direkt buchen!</p>
             </div>
-            <h3 className="text-brand font-bold text-sm mb-1 text-center">Reifen</h3>
-            <p className="text-gray-400 text-xs text-center">Große Auswahl & Montage</p>
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="w-full min-h-[44px] bg-brand hover:bg-brand-dark text-white text-xs font-bold py-2 rounded-xl transition-colors cursor-pointer"
+            >
+              Termin buchen
+            </button>
           </motion.div>
         </div>
       </div>
+
 
     </section>
   );

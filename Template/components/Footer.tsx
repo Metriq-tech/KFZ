@@ -50,7 +50,7 @@ export function Footer() {
           {/* Column 4 - Newsletter */}
           <div className="space-y-6">
             <h4 className="text-lg font-bold">Newsletter abonnieren</h4>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="email"
                 aria-label="E-Mail für Newsletter"

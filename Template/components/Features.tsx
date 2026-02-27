@@ -20,7 +20,7 @@ export function Features() {
             <div className="inline-block px-4 py-1 bg-brand-light text-brand rounded-full text-sm font-bold uppercase tracking-wide">
               {clientConfig.about.badge}
             </div>
-            <h2 className="text-4xl font-display font-bold leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold leading-tight">
               {clientConfig.about.headlinePart1}
               <span className="text-brand">{clientConfig.about.headlineHighlight}</span>{clientConfig.about.headlinePart2}
             </h2>
@@ -51,7 +51,7 @@ export function Features() {
           >
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4 mt-8">
-                <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl">
+                <div className="relative h-40 sm:h-64 rounded-2xl overflow-hidden shadow-xl">
                   <Image
                     src={clientConfig.about.images[0]?.src ?? ''}
                     alt={clientConfig.about.images[0]?.alt ?? ''}
@@ -61,7 +61,7 @@ export function Features() {
                     className="object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl">
+                <div className="relative h-32 sm:h-48 rounded-2xl overflow-hidden shadow-xl">
                   <Image
                     src={clientConfig.about.images[1]?.src ?? ''}
                     alt={clientConfig.about.images[1]?.alt ?? ''}
@@ -73,7 +73,7 @@ export function Features() {
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl">
+                <div className="relative h-32 sm:h-48 rounded-2xl overflow-hidden shadow-xl">
                   <Image
                     src={clientConfig.about.images[2]?.src ?? ''}
                     alt={clientConfig.about.images[2]?.alt ?? ''}
@@ -83,7 +83,7 @@ export function Features() {
                     className="object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl">
+                <div className="relative h-40 sm:h-64 rounded-2xl overflow-hidden shadow-xl">
                   <Image
                     src={clientConfig.about.images[3]?.src ?? ''}
                     alt={clientConfig.about.images[3]?.alt ?? ''}
@@ -97,7 +97,7 @@ export function Features() {
             </div>
 
             {/* Decorative Element */}
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gray-100 rounded-full blur-3xl opacity-50" />
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full lg:w-[120%] h-[120%] bg-gray-100 rounded-full blur-3xl opacity-50" />
           </motion.div>
         </div>
       </div>

@@ -35,3 +35,12 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Scrollbar-Hide utility (used by horizontal snap carousel in Hero) */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

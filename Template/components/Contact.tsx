@@ -13,7 +13,7 @@ export function Contact() {
           {/* Contact Info */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-4xl font-display font-bold mb-4 text-gray-900">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold mb-4 text-gray-900">
                 Diskutieren Sie Ihre <br />
                 <span className="text-brand">Auto-Probleme</span>
               </h2>
@@ -61,7 +61,7 @@ export function Contact() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-brand-dark rounded-3xl p-8 text-white shadow-2xl"
+            className="bg-brand-dark rounded-3xl p-4 sm:p-8 text-white shadow-2xl"
           >
             <h3 className="text-2xl font-bold mb-2">Kontakt aufnehmen</h3>
             <p className="text-white/70 mb-6 text-sm">Wir sind für Sie da! Wie können wir helfen?</p>
@@ -101,7 +101,7 @@ export function Contact() {
                 type="submit"
                 className="w-full bg-white text-brand-dark font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
               >
-                Lösung Anfordern <Send className="w-4 h-4" />
+                Lösung anfordern <Send className="w-4 h-4" />
               </button>
             </form>
           </motion.div>

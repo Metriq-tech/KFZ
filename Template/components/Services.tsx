@@ -21,7 +21,7 @@ export function Services() {
     <section id="services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl font-display font-bold mb-4 text-gray-900">Unsere Services</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold mb-4 text-gray-900">Unsere Services</h2>
           <p className="text-gray-600">
             Bei MEISTER bieten wir ein komplettes Spektrum an Autoservices,
             um Ihr Fahrzeug sicher und effizient auf der Straße zu halten.
@@ -56,7 +56,7 @@ export function Services() {
                 <p className="text-gray-500 text-sm mb-4 line-clamp-2">
                   {service.description}
                 </p>
-                <button className="flex items-center gap-2 text-brand font-medium text-sm hover:gap-3 transition-all group-hover:text-brand-dark">
+                <button className="flex items-center gap-2 text-brand font-medium text-sm hover:gap-3 transition-all group-hover:text-brand-dark cursor-pointer">
                   Mehr lesen <ArrowUpRight className="w-4 h-4" />
                 </button>
               </div>
