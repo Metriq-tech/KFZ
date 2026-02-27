@@ -3,30 +3,9 @@
 import { motion } from 'motion/react';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
+import { clientConfig } from '@/lib/client-config';
 
-const testimonials = [
-  {
-    name: "Helena Schmidt",
-    role: "Autobesitzerin",
-    text: "Schnell, freundlich und zuverlässig! Sie haben meine Klimaanlage perfekt repariert. Sehr empfehlenswert!",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
-  },
-  {
-    name: "Markus Weber",
-    role: "Geschäftskunde",
-    text: "Professioneller Service mit ehrlichen Preisen. Ich bringe unsere gesamte Flotte hierher.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop"
-  },
-  {
-    name: "Julia Meyer",
-    role: "Autobesitzerin",
-    text: "Der Abhol- und Bringservice hat mir so viel Zeit gespart. Alles war super bequem.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop"
-  }
-];
+const testimonials = clientConfig.testimonials;
 
 export function Testimonials() {
   return (
@@ -45,7 +24,7 @@ export function Testimonials() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-gray-50 p-8 rounded-3xl border border-gray-100 hover:border-red-100 transition-colors"
+              className="bg-gray-50 p-8 rounded-3xl border border-gray-100 hover:border-brand-light transition-colors"
             >
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
@@ -67,7 +46,7 @@ export function Testimonials() {
                 </div>
                 <div>
                   <div className="font-bold text-gray-900">{testimonial.name}</div>
-                  <div className="text-xs text-red-500 uppercase font-bold tracking-wider">{testimonial.role}</div>
+                  <div className="text-xs text-brand uppercase font-bold tracking-wider">{testimonial.role}</div>
                 </div>
               </div>
             </motion.div>

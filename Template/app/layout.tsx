@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
+import { clientConfig } from '@/lib/client-config';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -12,32 +13,23 @@ const outfit = Outfit({
   variable: '--font-outfit',
 });
 
+const { seo, colors } = clientConfig;
+
 export const metadata: Metadata = {
-  title: 'KFZ-Meisterbetrieb Hamburg | MEISTER – Ihre Werkstatt mit Festpreisen',
-  description:
-    'MEISTER KFZ-Meisterbetrieb Hamburg: Ölwechsel, Reifenwechsel, Klimaservice, HU/AU und mehr. Online Terminbuchung. Transparente Festpreise. Über 20 Jahre Erfahrung.',
-  keywords: [
-    'KFZ Werkstatt Hamburg',
-    'Autowerkstatt Hamburg',
-    'KFZ Meisterbetrieb',
-    'Ölwechsel Hamburg',
-    'Reifenwechsel Hamburg',
-    'HU AU Hamburg',
-    'Online Terminbuchung Werkstatt',
-    'Festpreise Werkstatt',
-  ],
+  title: seo.title,
+  description: seo.description,
+  keywords: seo.keywords,
   openGraph: {
-    title: 'MEISTER KFZ-Meisterbetrieb Hamburg',
-    description:
-      'Ihre vertrauenswürdige KFZ-Werkstatt in Hamburg. Online buchbar, faire Festpreise, über 20 Jahre Erfahrung.',
+    title: seo.ogTitle,
+    description: seo.ogDescription,
     type: 'website',
-    locale: 'de_DE',
+    locale: seo.locale,
     images: [
       {
-        url: '/images/Werkstatt3.jpg',
+        url: seo.ogImage,
         width: 1200,
         height: 630,
-        alt: 'MEISTER KFZ-Meisterbetrieb Hamburg – Unsere Werkstatt',
+        alt: `${seo.ogTitle} – Unsere Werkstatt`,
       },
     ],
   },
@@ -47,9 +39,18 @@ export const metadata: Metadata = {
   },
 };
 
+/* CSS Custom Properties für Farben – ermöglicht Farbwechsel rein über Config */
+const colorVars = {
+  '--color-primary': colors.primary,
+  '--color-primary-hover': colors.primaryHover,
+  '--color-primary-light': colors.primaryLight,
+  '--color-primary-text': colors.primaryText,
+  '--color-dark': colors.dark,
+} as React.CSSProperties;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${inter.variable} ${outfit.variable}`}>
+    <html lang="de" className={`${inter.variable} ${outfit.variable}`} style={colorVars}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

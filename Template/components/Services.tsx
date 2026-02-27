@@ -3,45 +3,18 @@
 import { motion } from 'motion/react';
 import { ArrowUpRight, Thermometer, Wind, Battery, Wrench, Disc, Settings } from 'lucide-react';
 import Image from 'next/image';
+import { clientConfig } from '@/lib/client-config';
+import type { ComponentType } from 'react';
 
-const services = [
-  {
-    title: "Periodische Wartung",
-    description: "Halten Sie Ihr Fahrzeug in Top-Form mit unserer regelmäßigen Experten-Wartung.",
-    icon: Wrench,
-    image: "/images/inspektion.avif"
-  },
-  {
-    title: "Kühlsystem Reparatur",
-    description: "Wir beheben Lecks, Kühler und sorgen für optimale Motortemperatur.",
-    icon: Thermometer,
-    image: "/images/karosseriebau.avif"
-  },
-  {
-    title: "Klimaanlagen Service",
-    description: "Bleiben Sie cool mit unserer effizienten Klimaanlagen-Wartung und Reparatur.",
-    icon: Wind,
-    image: "/images/klimaanlage1.avif"
-  },
-  {
-    title: "Batterie & Elektronik",
-    description: "Diagnose und Austausch von Batterien und elektronischen Komponenten.",
-    icon: Battery,
-    image: "/images/elektrik.avif"
-  },
-  {
-    title: "Reifen & Räder",
-    description: "Professioneller Reifenwechsel, Wuchten und Achsvermessung.",
-    icon: Disc,
-    image: "/images/reifenwechsel.avif"
-  },
-  {
-    title: "Motor Diagnose",
-    description: "Tiefgehende Fehleranalyse mit modernsten Diagnosegeräten.",
-    icon: Settings,
-    image: "/images/diagnose.avif"
-  }
-];
+const iconMap: Record<string, ComponentType<{ className?: string }>> = {
+  wrench: Wrench, thermometer: Thermometer, wind: Wind,
+  battery: Battery, disc: Disc, settings: Settings,
+};
+
+const services = clientConfig.services.map((s) => ({
+  ...s,
+  icon: iconMap[s.iconName] ?? Wrench,
+}));
 
 export function Services() {
   return (
@@ -75,7 +48,7 @@ export function Services() {
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm p-2 rounded-lg">
-                  <service.icon className="w-6 h-6 text-red-600" />
+                  <service.icon className="w-6 h-6 text-brand" />
                 </div>
               </div>
               <div className="p-6">
@@ -83,7 +56,7 @@ export function Services() {
                 <p className="text-gray-500 text-sm mb-4 line-clamp-2">
                   {service.description}
                 </p>
-                <button className="flex items-center gap-2 text-red-600 font-medium text-sm hover:gap-3 transition-all group-hover:text-red-700">
+                <button className="flex items-center gap-2 text-brand font-medium text-sm hover:gap-3 transition-all group-hover:text-brand-dark">
                   Mehr lesen <ArrowUpRight className="w-4 h-4" />
                 </button>
               </div>

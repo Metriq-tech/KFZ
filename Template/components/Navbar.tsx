@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { clientConfig } from '@/lib/client-config';
 
 const navLinks = [
   { label: 'Home', href: 'hero' },
@@ -12,14 +13,7 @@ const navLinks = [
   { label: 'Kontakt', href: 'contact' },
 ];
 
-const serviceLinks = [
-  'Inspektion & Wartung',
-  'Reifen & Räder',
-  'Klimaanlage',
-  'Motor Diagnose',
-  'TÜV Vorbereitung',
-  'Karosserie',
-];
+const serviceLinks = clientConfig.serviceLabels;
 
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
@@ -53,7 +47,7 @@ export function Navbar() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  // Dropdown bei Klick außerhalb schließen
+  // Dropdown bei Klick auÃŸerhalb schlieÃŸen
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -73,10 +67,10 @@ export function Navbar() {
 
           {/* Logo */}
           <button onClick={() => scrollToSection('hero')} className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-bold text-xl italic font-display">
-              M
+            <div className="w-10 h-10 rounded-full bg-brand flex items-center justify-center font-bold text-xl italic font-display">
+              {clientConfig.branding.logoLetter}
             </div>
-            <span className="font-display font-bold text-xl tracking-wider">MEISTER</span>
+            <span className="font-display font-bold text-xl tracking-wider">{clientConfig.branding.brandName}</span>
           </button>
 
           {/* Desktop Menu */}
@@ -87,14 +81,14 @@ export function Navbar() {
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors hover:text-red-500 ${isActive(link.href) ? 'text-red-500' : 'text-gray-300'
+                className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors hover:text-brand ${isActive(link.href) ? 'text-brand' : 'text-gray-300'
                   }`}
               >
                 {link.label}
                 {isActive(link.href) && (
                   <motion.span
                     layoutId="active-underline"
-                    className="absolute bottom-0 left-3 right-3 h-0.5 bg-red-500 rounded-full"
+                    className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand rounded-full"
                   />
                 )}
               </button>
@@ -104,7 +98,7 @@ export function Navbar() {
             <div ref={dropdownRef} className="relative">
               <button
                 onClick={() => setShowServiceDropdown((v) => !v)}
-                className={`relative flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:text-red-500 ${isActive('services') ? 'text-red-500' : 'text-gray-300'
+                className={`relative flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:text-brand ${isActive('services') ? 'text-brand' : 'text-gray-300'
                   }`}
               >
                 Services
@@ -114,7 +108,7 @@ export function Navbar() {
                 {isActive('services') && (
                   <motion.span
                     layoutId="active-underline"
-                    className="absolute bottom-0 left-3 right-3 h-0.5 bg-red-500 rounded-full"
+                    className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand rounded-full"
                   />
                 )}
               </button>
@@ -132,7 +126,7 @@ export function Navbar() {
                       <button
                         key={label}
                         onClick={() => { scrollToSection('services'); setShowServiceDropdown(false); }}
-                        className="w-full text-left block px-4 py-2.5 text-sm text-gray-300 hover:text-red-500 hover:bg-white/5 transition-colors"
+                        className="w-full text-left block px-4 py-2.5 text-sm text-gray-300 hover:text-brand hover:bg-white/5 transition-colors"
                       >
                         {label}
                       </button>
@@ -145,7 +139,7 @@ export function Navbar() {
             {/* CTA Button */}
             <button
               onClick={() => scrollToSection('contact')}
-              className="ml-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"
+              className="ml-2 bg-brand hover:bg-brand-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"
             >
               Termin buchen
             </button>
@@ -179,7 +173,7 @@ export function Navbar() {
                 <button
                   key={link.href}
                   onClick={() => { scrollToSection(link.href); setIsOpen(false); }}
-                  className={`w-full text-left block px-3 py-3 rounded-md text-base font-medium transition-colors hover:text-red-500 hover:bg-gray-900 ${isActive(link.href) ? 'text-red-500' : 'text-gray-300'
+                  className={`w-full text-left block px-3 py-3 rounded-md text-base font-medium transition-colors hover:text-brand hover:bg-gray-900 ${isActive(link.href) ? 'text-brand' : 'text-gray-300'
                     }`}
                 >
                   {link.label}
@@ -187,7 +181,7 @@ export function Navbar() {
               ))}
               <button
                 onClick={() => { scrollToSection('contact'); setIsOpen(false); }}
-                className="w-full mt-2 bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-xl text-base font-medium transition-colors"
+                className="w-full mt-2 bg-brand hover:bg-brand-dark text-white px-4 py-3 rounded-xl text-base font-medium transition-colors"
               >
                 Termin buchen
               </button>

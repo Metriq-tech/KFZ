@@ -4,46 +4,29 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
 import { Wrench, Star, Briefcase, Wifi, Disc, Settings, Shield } from 'lucide-react';
+import { clientConfig } from '@/lib/client-config';
+import type { ComponentType } from 'react';
 
-/* ── Hotspot-Daten ── */
-const hotspots = [
-  {
-    id: 'reifen',
-    label: 'Reifen',
-    description: 'Kaufen Sie Reifen aus unserem Produktsortiment und fahren Sie sorgenfrei.',
-    image: '/images/Reifen.png',
-    icon: Disc,
-    // Position relativ zum Auto-Container
-    top: '60%',
-    left: '28%',
-  },
-  {
-    id: 'motor',
-    label: 'Motorhaube',
-    description: 'Professionelle Motordiagnose und Reparatur – schnell und zuverlässig.',
-    image: '/images/motor.avif',
-    icon: Settings,
-    top: '48%',
-    left: '60%',
-  },
-  {
-    id: 'scheibe',
-    label: 'Scheibe',
-    description: 'Steinschlag-Reparatur und Scheibentausch – direkt über die Versicherung.',
-    image: '/images/Frontscheibe6.png',
-    icon: Shield,
-    top: '40%',
-    left: '46%',
-  },
-];
+/* â”€â”€ Icon-Mapping â”€â”€ */
+const iconMap: Record<string, ComponentType<{ className?: string }>> = {
+  wrench: Wrench, star: Star, briefcase: Briefcase, wifi: Wifi,
+  disc: Disc, settings: Settings, shield: Shield,
+};
+
+/* â”€â”€ Hotspot-Daten aus Config â”€â”€ */
+const hotspots = clientConfig.hotspots.map((h) => ({
+  ...h,
+  icon: iconMap[h.iconName] ?? Wrench,
+}));
 
 export function Hero() {
-  const [activeHotspot, setActiveHotspot] = useState<string>('reifen');
+  const [activeHotspot, setActiveHotspot] = useState<string>(clientConfig.hotspots[0]?.id || '');
   const active = hotspots.find((h) => h.id === activeHotspot)!;
 
   const gridRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [lineCoords, setLineCoords] = useState<{ x1: number; y1: number; x2: number; y2: number } | null>(null);
+  const isFirstMount = useRef(true);
 
   useEffect(() => {
     if (!gridRef.current || !cardRef.current) {
@@ -63,8 +46,11 @@ export function Hero() {
         y2: hs.top + hs.height / 2 - grid.top,
       });
     };
-    // small delay for AnimatePresence to finish
-    const t = setTimeout(updateLine, 350);
+    // Beim ersten Mount muss die Auto-Eingangsanimation (delay 0.3s + duration 0.8s) abgewartet werden.
+    // Danach reicht ein kurzer Delay für AnimatePresence.
+    const delay = isFirstMount.current ? 1300 : 350;
+    isFirstMount.current = false;
+    const t = setTimeout(updateLine, delay);
     window.addEventListener('resize', updateLine);
     return () => { clearTimeout(t); window.removeEventListener('resize', updateLine); };
   }, [activeHotspot]);
@@ -73,12 +59,12 @@ export function Hero() {
     <section id="hero" style={{ backgroundColor: 'var(--color-dark)' }} className="relative h-screen text-white overflow-hidden pt-20 flex flex-col justify-center">
       {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-red-900/20 blur-[120px] rounded-full" />
-        <div className="absolute top-[20%] right-[0%] w-[40%] h-[60%] bg-red-900/10 blur-[100px] rounded-full" />
+        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-brand-dark/20 blur-[120px] rounded-full" />
+        <div className="absolute top-[20%] right-[0%] w-[40%] h-[60%] bg-brand-dark/10 blur-[100px] rounded-full" />
       </div>
 
 
-      {/* ── Hero Frame Card (wie Referenz-Bild) ── */}
+      {/* â”€â”€ Hero Frame Card (wie Referenz-Bild) â”€â”€ */}
       <div className="container mx-auto px-4 relative z-10 py-4">
         <div
           className="rounded-[2rem] border border-white/20"
@@ -91,7 +77,7 @@ export function Hero() {
 
           <div ref={gridRef} className="px-4 pt-4 pb-1 grid grid-cols-1 lg:grid-cols-12 gap-3 items-center relative">
 
-            {/* ── Left Info Card (wechselt je nach Hotspot) ── Desktop Only */}
+            {/* â”€â”€ Left Info Card (wechselt je nach Hotspot) â”€â”€ Desktop Only */}
             <div className="hidden lg:flex lg:col-span-2 flex-col gap-4 relative">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -103,7 +89,7 @@ export function Hero() {
                   className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-3xl relative"
                   ref={cardRef}
                 >
-                  <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-12 bg-red-600 rounded-full" />
+                  <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-12 bg-brand rounded-full" />
                   {active.image ? (
                     <div className="relative w-full h-50 mb-3 rounded-2xl overflow-hidden">
                       <Image src={active.image} alt={active.label} fill className="object-cover" />
@@ -115,7 +101,7 @@ export function Hero() {
                       </div>
                     </div>
                   )}
-                  <h3 className="text-red-500 font-bold text-lg mb-1">{active.label}</h3>
+                  <h3 className="text-brand font-bold text-lg mb-1">{active.label}</h3>
                   <p className="text-gray-400 text-xs leading-relaxed">{active.description}</p>
                 </motion.div>
               </AnimatePresence>
@@ -128,8 +114,8 @@ export function Hero() {
                 animate={{ y: 0, opacity: 1 }}
                 className="text-3xl md:text-4xl font-display font-bold mb-1 leading-tight"
               >
-                Wir behandeln Sie &amp; Ihr Auto <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Wie Familie</span>
+                {clientConfig.hero.headlineLine1} <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">{clientConfig.hero.headlineLine2}</span>
               </motion.h1>
 
               <motion.div
@@ -138,10 +124,10 @@ export function Hero() {
                 transition={{ delay: 0.3, duration: 0.8 }}
                 className="relative w-[120%] -ml-[10%] h-[600px] my-0"
               >
-                {/* Car Image – z-10 so hotspots (z-30) sit on top */}
+                {/* Car Image â€“ z-10 so hotspots (z-30) sit on top */}
                 <Image
-                  src="/images/rotes_auto5_transparent.png"
-                  alt="KFZ Meisterbetrieb Hamburg – Rotes Fahrzeug"
+                  src={clientConfig.hero.heroImage}
+                  alt={clientConfig.hero.heroImageAlt}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 800px"
                   className="object-contain drop-shadow-2xl"
@@ -149,7 +135,7 @@ export function Hero() {
                   priority
                 />
 
-                {/* ── Interaktive Hotspots ── */}
+                {/* â”€â”€ Interaktive Hotspots â”€â”€ */}
                 {hotspots.map((spot) => (
                   <motion.button
                     key={spot.id}
@@ -165,10 +151,10 @@ export function Hero() {
                       left: spot.left,
                       zIndex: 30,
                       boxShadow: activeHotspot === spot.id
-                        ? '0 0 0 8px rgba(220,38,38,0.5), 0 0 20px rgba(220,38,38,0.3)'
-                        : '0 0 0 6px rgba(220,38,38,0.35)',
+                        ? `0 0 0 8px color-mix(in srgb, var(--color-primary) 50%, transparent), 0 0 20px color-mix(in srgb, var(--color-primary) 30%, transparent)`
+                        : `0 0 0 6px color-mix(in srgb, var(--color-primary) 35%, transparent)`,
                     }}
-                    className="w-4 h-4 bg-red-600 rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform"
+                    className="w-4 h-4 bg-brand rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform"
                   />
                 ))}
 
@@ -179,7 +165,7 @@ export function Hero() {
 
             </div>
 
-            {/* SVG Connector Line – from card to active hotspot */}
+            {/* SVG Connector Line â€“ from card to active hotspot */}
             {lineCoords && (
               <svg className="absolute inset-0 w-full h-full pointer-events-none hidden xl:block" style={{ zIndex: 40, overflow: 'visible' }}>
                 <line
@@ -201,7 +187,7 @@ export function Hero() {
                 transition={{ delay: 0.4 }}
                 className="bg-black/40 backdrop-blur-md border border-white/10 p-5 rounded-3xl"
               >
-                <div className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">
+                <div className="bg-brand text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">
                   Auto Services
                 </div>
                 <ul className="space-y-2 text-sm text-gray-400">
@@ -220,50 +206,48 @@ export function Hero() {
                 transition={{ delay: 0.6 }}
                 className="bg-[#1a1a1a] border border-white/10 p-5 rounded-3xl relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-20 h-20 bg-red-600/20 blur-2xl rounded-full" />
-                <h4 className="text-red-500 font-bold mb-2">Termin sichern</h4>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-brand/20 blur-2xl rounded-full" />
+                <h4 className="text-brand font-bold mb-2">Termin sichern</h4>
                 <p className="text-gray-400 text-xs mb-4">
                   Buchen Sie jetzt Ihren Service und vermeiden Sie Wartezeiten!
                 </p>
-                <button className="w-full bg-red-600 hover:bg-red-700 text-white text-sm font-bold py-2 rounded-xl transition-colors shadow-lg shadow-red-900/20">
+                <button className="w-full bg-brand hover:bg-brand-dark text-white text-sm font-bold py-2 rounded-xl transition-colors shadow-lg shadow-brand-dark/20">
                   Termin Buchen
                 </button>
               </motion.div>
             </div>
           </div>{/* end grid */}
 
-          {/* Bottom Stats Bar – inside frame */}
+          {/* Bottom Stats Bar â€“ inside frame */}
           <div className="px-6 pt-0 pb-3">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {[
-                { icon: Wrench, value: "40+", label: "Werkstätten" },
-                { icon: Star, value: "20+", label: "Jahre Erfahrung" },
-                { icon: Briefcase, value: "14+", label: "Services" },
-                { icon: Wifi, value: "Gratis", label: "WLAN & Kaffee" },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.8 + (index * 0.1) }}
-                  className="bg-white/5 border border-white/5 rounded-2xl p-4 flex items-center gap-3 hover:bg-white/10 transition-colors"
-                >
-                  <div className="p-2 bg-white/10 rounded-full">
-                    <stat.icon className="w-4 h-4 text-gray-300" />
-                  </div>
-                  <div>
-                    <div className="text-red-500 font-bold text-base">{stat.value}</div>
-                    <div className="text-gray-400 text-xs uppercase tracking-wider">{stat.label}</div>
-                  </div>
-                </motion.div>
-              ))}
+              {clientConfig.stats.map((stat, index) => {
+                const StatIcon = [Wrench, Star, Briefcase, Wifi][index] ?? Wrench;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.8 + (index * 0.1) }}
+                    className="bg-white/5 border border-white/5 rounded-2xl p-4 flex items-center gap-3 hover:bg-white/10 transition-colors"
+                  >
+                    <div className="p-2 bg-white/10 rounded-full">
+                      <StatIcon className="w-4 h-4 text-gray-300" />
+                    </div>
+                    <div>
+                      <div className="text-brand font-bold text-base">{stat.value}</div>
+                      <div className="text-gray-400 text-xs uppercase tracking-wider">{stat.label}</div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
         </div>{/* end frame card */}
       </div>{/* end container */}
 
-      {/* Mobile Cards Strip – nur auf Mobile/Tablet sichtbar */}
+      {/* Mobile Cards Strip â€“ nur auf Mobile/Tablet sichtbar */}
       <div className="lg:hidden container mx-auto px-4 pb-6">
         <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-none">
           {/* Services Mini-Card */}
@@ -273,7 +257,7 @@ export function Hero() {
             transition={{ delay: 0.5 }}
             className="flex-shrink-0 snap-start bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-2xl min-w-[200px]"
           >
-            <div className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full inline-block mb-3">
+            <div className="bg-brand text-white text-xs font-bold px-2 py-1 rounded-full inline-block mb-3">
               Auto Services
             </div>
             <ul className="space-y-1 text-sm text-gray-400">
@@ -291,10 +275,10 @@ export function Hero() {
             transition={{ delay: 0.65 }}
             className="flex-shrink-0 snap-start bg-[#1a1a1a] border border-white/10 p-4 rounded-2xl min-w-[200px] relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-16 h-16 bg-red-600/20 blur-2xl rounded-full" />
-            <h4 className="text-red-500 font-bold mb-1 text-sm">Termin sichern</h4>
-            <p className="text-gray-400 text-xs mb-3">Kein Warten – direkt online buchen!</p>
-            <button className="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2 rounded-xl transition-colors">
+            <div className="absolute top-0 right-0 w-16 h-16 bg-brand/20 blur-2xl rounded-full" />
+            <h4 className="text-brand font-bold mb-1 text-sm">Termin sichern</h4>
+            <p className="text-gray-400 text-xs mb-3">Kein Warten â€“ direkt online buchen!</p>
+            <button className="w-full bg-brand hover:bg-brand-dark text-white text-xs font-bold py-2 rounded-xl transition-colors">
               Termin Buchen
             </button>
           </motion.div>
@@ -309,7 +293,7 @@ export function Hero() {
             <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center border-2 border-gray-700 mx-auto mb-3">
               <Disc className="w-6 h-6 text-gray-400" />
             </div>
-            <h3 className="text-red-500 font-bold text-sm mb-1 text-center">Reifen</h3>
+            <h3 className="text-brand font-bold text-sm mb-1 text-center">Reifen</h3>
             <p className="text-gray-400 text-xs text-center">Große Auswahl & Montage</p>
           </motion.div>
         </div>
