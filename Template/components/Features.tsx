@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import Image from 'next/image';
 import { CheckCircle } from 'lucide-react';
 import { clientConfig } from '@/lib/client-config';
+import { withPrefix } from '@/lib/asset-prefix';
 
 export function Features() {
   return (
@@ -53,7 +54,7 @@ export function Features() {
               <div className="space-y-4 mt-8">
                 <div className="relative h-40 sm:h-64 rounded-2xl overflow-hidden shadow-xl">
                   <Image
-                    src={clientConfig.about.images[0]?.src ?? ''}
+                    src={withPrefix(clientConfig.about.images[0]?.src ?? '')}
                     alt={clientConfig.about.images[0]?.alt ?? ''}
                     fill
                     sizes="(max-width: 768px) 100vw, 300px"
@@ -63,7 +64,7 @@ export function Features() {
                 </div>
                 <div className="relative h-32 sm:h-48 rounded-2xl overflow-hidden shadow-xl">
                   <Image
-                    src={clientConfig.about.images[1]?.src ?? ''}
+                    src={withPrefix(clientConfig.about.images[1]?.src ?? '')}
                     alt={clientConfig.about.images[1]?.alt ?? ''}
                     fill
                     sizes="(max-width: 768px) 100vw, 300px"
@@ -75,7 +76,7 @@ export function Features() {
               <div className="space-y-4">
                 <div className="relative h-32 sm:h-48 rounded-2xl overflow-hidden shadow-xl">
                   <Image
-                    src={clientConfig.about.images[2]?.src ?? ''}
+                    src={withPrefix(clientConfig.about.images[2]?.src ?? '')}
                     alt={clientConfig.about.images[2]?.alt ?? ''}
                     fill
                     sizes="(max-width: 768px) 100vw, 300px"
@@ -85,7 +86,7 @@ export function Features() {
                 </div>
                 <div className="relative h-40 sm:h-64 rounded-2xl overflow-hidden shadow-xl">
                   <Image
-                    src={clientConfig.about.images[3]?.src ?? ''}
+                    src={withPrefix(clientConfig.about.images[3]?.src ?? '')}
                     alt={clientConfig.about.images[3]?.alt ?? ''}
                     fill
                     sizes="(max-width: 768px) 100vw, 300px"

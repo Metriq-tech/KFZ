@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { ArrowUpRight, Thermometer, Wind, Battery, Wrench, Disc, Settings } from 'lucide-react';
 import Image from 'next/image';
 import { clientConfig } from '@/lib/client-config';
+import { withPrefix } from '@/lib/asset-prefix';
 import type { ComponentType } from 'react';
 
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {
@@ -40,7 +41,7 @@ export function Services() {
             >
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src={service.image}
+                  src={withPrefix(service.image)}
                   alt={service.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"

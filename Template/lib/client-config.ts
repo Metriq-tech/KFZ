@@ -1,159 +1,65 @@
 /* ─────────────────────────────────────────────
- *  client-config.ts
- *  Zentrale Konfiguration für kundenspezifische Daten.
- *  Pro Kunde wird NUR diese Datei (+ Bilder) ausgetauscht.
+ *  client-config.ts – Freie Werkstatt Hamburg
+ *  Standalone – wird direkt als Template-Config eingesetzt
  * ───────────────────────────────────────────── */
 
-// ── 1. Typen ──────────────────────────────────
-
-export interface ClientBranding {
-    logoLetter: string;
-    brandName: string;
-    fullName: string;
-    logoImage?: string;
-}
-
-export interface ClientContact {
-    email: string;
-    phone: string;
-    phoneDisplay: string;
-    address: string;
-    mapsUrl?: string;
-}
-
-export interface ClientSocialLinks {
-    facebook?: string;
-    instagram?: string;
-    linkedin?: string;
-    youtube?: string;
-    google?: string;
-}
-
-export interface ClientSEO {
-    title: string;
-    description: string;
-    keywords: string[];
-    ogTitle: string;
-    ogDescription: string;
-    ogImage: string;
-    locale: string;
-}
-
-export interface ClientColors {
-    primary: string;
-    primaryHover: string;
-    primaryLight: string;
-    primaryText: string;
-    dark: string;
-}
-
-export interface ClientHeroContent {
-    headlineLine1: string;
-    headlineLine2: string;
-    heroImage: string;
-    heroImageAlt: string;
-}
-
-export interface ClientStat {
-    value: string;
-    label: string;
-}
-
-export interface ClientAbout {
-    badge: string;
-    headlinePart1: string;
-    headlineHighlight: string;
-    headlinePart2: string;
-    description: string;
-    bulletPoints: string[];
-    images: { src: string; alt: string }[];
-}
-
-export interface ClientServiceItem {
-    title: string;
-    description: string;
-    image: string;
-    iconName: string;
-}
-
-export interface ClientTestimonial {
-    name: string;
-    role: string;
-    text: string;
-    rating: number;
-    image: string;
-}
-
-export interface ClientHotspot {
-    id: string;
-    label: string;
-    description: string;
-    image: string;
-    top: string;
-    left: string;
-    iconName: string;
-}
-
+export interface ClientBranding { logoLetter: string; brandName: string; fullName: string; logoImage?: string; }
+export interface ClientContact { email: string; phone: string; phoneDisplay: string; address: string; mapsUrl?: string; }
+export interface ClientSocialLinks { facebook?: string; instagram?: string; linkedin?: string; youtube?: string; google?: string; }
+export interface ClientSEO { title: string; description: string; keywords: string[]; ogTitle: string; ogDescription: string; ogImage: string; locale: string; }
+export interface ClientColors { primary: string; primaryHover: string; primaryLight: string; primaryText: string; dark: string; }
+export interface ClientHeroContent { headlineLine1: string; headlineLine2: string; heroImage: string; heroImageAlt: string; }
+export interface ClientStat { value: string; label: string; iconName: string; }
+export interface ClientAbout { badge: string; headlinePart1: string; headlineHighlight: string; headlinePart2: string; description: string; bulletPoints: string[]; images: { src: string; alt: string }[]; }
+export interface ClientServiceItem { title: string; description: string; image: string; iconName: string; }
+export interface ClientTestimonial { name: string; role: string; text: string; rating: number; image: string; }
+export interface ClientHotspot { id: string; label: string; description: string; image: string; top: string; left: string; iconName: string; }
+export interface ClientGoogleReviews { rating: number; count: number; }
 export interface ClientConfig {
-    branding: ClientBranding;
-    contact: ClientContact;
-    social: ClientSocialLinks;
-    seo: ClientSEO;
-    colors: ClientColors;
-    hero: ClientHeroContent;
-    stats: ClientStat[];
-    about: ClientAbout;
-    services: ClientServiceItem[];
-    serviceLabels: string[];
-    testimonials: ClientTestimonial[];
-    hotspots: ClientHotspot[];
+    branding: ClientBranding; contact: ClientContact; social: ClientSocialLinks; seo: ClientSEO;
+    colors: ClientColors; hero: ClientHeroContent; stats: ClientStat[]; about: ClientAbout;
+    services: ClientServiceItem[]; serviceLabels: string[]; testimonials: ClientTestimonial[];
+    hotspots: ClientHotspot[]; googleReviews?: ClientGoogleReviews;
 }
-
-// ── 2. Standard-Config (Template: "Meister Hamburg") ──
 
 export const clientConfig: ClientConfig = {
 
+    // ───── Branding ─────
     branding: {
-        logoLetter: 'M',
-        brandName: 'MEISTER',
-        fullName: 'MEISTER AUTOMOBILES',
+        logoLetter: 'F',
+        brandName: 'FREIE WERKSTATT',
+        fullName: 'Freie Werkstatt Hamburg',
+        // Logo-Datei hier ablegen: KFZ-Betriebe/freie-werkstatt-hamburg/logo.png
+        // logoImage: '/images/logo.png',
     },
 
+    // ───── Kontakt ─────
     contact: {
-        email: 'kontakt@kfz-hamburg.de',
-        phone: '+4940123456789',
-        phoneDisplay: '+49 40 123 456 78',
-        address: 'Hauptstraße 12, 20095 Hamburg',
+        email: 'info@freiewerkstatthamburg.de',
+        phone: '+494028417526',
+        phoneDisplay: '040 284 175 260',
+        address: 'Ausschläger Weg 60, 20537 Hamburg',
+        mapsUrl: 'https://maps.google.com/?q=Ausschl%C3%A4ger+Weg+60,+20537+Hamburg',
     },
 
+    // ───── Social Media ─────
     social: {
-        facebook: '#',
+        facebook: 'https://www.facebook.com/freiewerkstatthamburg',
         instagram: '#',
-        linkedin: '#',
-        youtube: '#',
     },
 
+    // ───── SEO / Meta ─────
     seo: {
-        title: 'KFZ-Meisterbetrieb Hamburg | MEISTER – Ihre Werkstatt mit Festpreisen',
-        description:
-            'MEISTER KFZ-Meisterbetrieb Hamburg: Ölwechsel, Reifenwechsel, Klimaservice, HU/AU und mehr. Online Terminbuchung. Transparente Festpreise. Über 20 Jahre Erfahrung.',
-        keywords: [
-            'KFZ Werkstatt Hamburg',
-            'Autowerkstatt Hamburg',
-            'KFZ Meisterbetrieb',
-            'Ölwechsel Hamburg',
-            'Reifenwechsel Hamburg',
-            'HU AU Hamburg',
-            'Online Terminbuchung Werkstatt',
-            'Festpreise Werkstatt',
-        ],
-        ogTitle: 'MEISTER KFZ-Meisterbetrieb Hamburg',
-        ogDescription:
-            'Ihre vertrauenswürdige KFZ-Werkstatt in Hamburg. Online buchbar, faire Festpreise, über 20 Jahre Erfahrung.',
+        title: 'Freie Werkstatt Hamburg | KFZ-Meisterbetrieb – PKW & LKW Reparatur',
+        description: 'Freie Werkstatt Hamburg – Ihr unabhängiger KFZ-Meisterbetrieb in Hamburg Mitte. PKW & LKW Reparaturen aller Fabrikate. 779+ Google-Bewertungen. Festpreise. Jetzt Termin vereinbaren.',
+        keywords: ['Freie Werkstatt Hamburg', 'KFZ Werkstatt Hamburg', 'Autowerkstatt Hamburg Mitte', 'PKW Reparatur Hamburg', 'LKW Werkstatt Hamburg', 'KFZ Meisterbetrieb'],
+        ogTitle: 'Freie Werkstatt Hamburg – KFZ-Meisterbetrieb für alle Fabrikate',
+        ogDescription: 'Unabhängige KFZ-Werkstatt in Hamburg. PKW & LKW. Alle Fabrikate. 779+ Bewertungen. Festpreise ab 99€.',
         ogImage: '/images/Werkstatt3.jpg',
         locale: 'de_DE',
     },
 
+    // ───── Farben ─────
     colors: {
         primary: '#dc2626',
         primaryHover: '#b91c1c',
@@ -162,88 +68,127 @@ export const clientConfig: ClientConfig = {
         dark: '#0a0a0a',
     },
 
+
+    // ───── Hero ─────
     hero: {
-        headlineLine1: 'Wir behandeln Sie & Ihr Auto',
-        headlineLine2: 'wie Familie',
+        headlineLine1: 'Ihre unabhängige Meisterwerkstatt',
+        headlineLine2: 'für alle Fabrikate',
         heroImage: '/images/rotes_auto5_transparent.png',
-        heroImageAlt: 'KFZ Meisterbetrieb Hamburg – Rotes Fahrzeug',
+        heroImageAlt: 'Freie Werkstatt Hamburg – KFZ-Meisterbetrieb',
     },
 
+    // ───── Statistiken (Hero-Bottom-Bar) ─────
     stats: [
-        { value: '40+', label: 'Werkstätten' },
-        { value: '20+', label: 'Jahre Erfahrung' },
-        { value: '14+', label: 'Services' },
-        { value: 'Gratis', label: 'WLAN & Kaffee' },
+        { value: '779+', label: 'Bewertungen', iconName: 'star' },
+        { value: '4.5 ★', label: 'Google Score', iconName: 'thumbsup' },
+        { value: 'PKW & LKW', label: 'Alle Fabrikate', iconName: 'wrench' },
+        { value: 'ab 99€', label: 'Festpreise', iconName: 'tag' },
     ],
 
+    // ───── Über Uns (Features) ─────
     about: {
         badge: 'Über Uns',
-        headlinePart1: 'Seit über 20 Jahren Ihr',
-        headlineHighlight: ' Vertrauenspartner',
-        headlinePart2: ' in Hamburg',
-        description:
-            'Als familiär geführter KFZ-Meisterbetrieb reparieren und warten wir Fahrzeuge aller Hersteller – vom Kleinwagen bis zum Transporter. Unsere zertifizierten Meister arbeiten mit modernsten Diagnosegeräten und ausschließlich hochwertigen Originalteilen.',
+        headlinePart1: 'Ihre unabhängige',
+        headlineHighlight: ' Meisterwerkstatt',
+        headlinePart2: ' in Hamburg Mitte',
+        description: 'Die Freie Werkstatt Hamburg ist Ihr erfahrener KFZ-Meisterbetrieb am Ausschläger Weg. Als markenunabhängige Werkstatt reparieren und warten wir sämtliche Fahrzeugfabrikate – vom Kleinwagen bis zum LKW. Unsere Kfz-Mechatroniker lösen jedes Problem professionell, schnell und zu transparenten Festpreisen.',
         bulletPoints: [
-            'TÜV & HU Vorbereitung',
-            'Festpreisgarantie',
-            'Kostenloser Kostenvoranschlag',
-            'Modernste Diagnosetechnik',
-            'Meisterbetrieb seit 2003',
-            'Original & OEM-Ersatzteile',
+            'Alle Fabrikate – PKW & LKW',
+            'Transparente Festpreise',
+            'Klimaservice R1234yf ab 199€',
+            'HU/AU Festpreis 150€',
+            'Computerdiagnose & KFZ-Elektrik',
+            'Abschleppdienst verfügbar',
         ],
         images: [
-            { src: '/images/Werkstatt1.jpg', alt: 'Unsere Werkstatt' },
-            { src: '/images/Nahaufnahme1.avif', alt: 'Detailarbeit am Fahrzeug' },
-            { src: '/images/inspektion.avif', alt: 'Fahrzeuginspektion' },
-            { src: '/images/Werkstatt2.jpg', alt: 'Werkstatt Innenansicht' },
+            { src: '/mocks/Werkstatt1.jpg', alt: 'Werkstatt Ansicht' },
+            { src: '/mocks/Nahaufnahme1.avif', alt: 'Detailarbeit am Fahrzeug' },
+            { src: '/mocks/Inspektion1.avif', alt: 'Fahrzeuginspektion' },
+            { src: '/mocks/Werkstatt2.jpg', alt: 'Werkstatt Innenansicht' },
         ],
     },
 
+    // ───── Services (aus echtem Website-Scraping) ─────
     services: [
-        { title: 'Periodische Wartung', description: 'Halten Sie Ihr Fahrzeug in Top-Form mit unserer regelmäßigen Experten-Wartung.', image: '/images/inspektion.avif', iconName: 'wrench' },
-        { title: 'Kühlsystem Reparatur', description: 'Wir beheben Lecks, Kühler und sorgen für optimale Motortemperatur.', image: '/images/karosseriebau.avif', iconName: 'thermometer' },
-        { title: 'Klimaanlagen Service', description: 'Bleiben Sie cool mit unserer effizienten Klimaanlagen-Wartung und Reparatur.', image: '/images/klimaanlage1.avif', iconName: 'wind' },
-        { title: 'Batterie & Elektronik', description: 'Diagnose und Austausch von Batterien und elektronischen Komponenten.', image: '/images/elektrik.avif', iconName: 'battery' },
-        { title: 'Reifen & Räder', description: 'Professioneller Reifenwechsel, Wuchten und Achsvermessung.', image: '/images/reifenwechsel.avif', iconName: 'disc' },
-        { title: 'Motor Diagnose', description: 'Tiefgehende Fehleranalyse mit modernsten Diagnosegeräten.', image: '/images/diagnose.avif', iconName: 'settings' },
+        {
+            title: 'Motor & Getriebe',
+            description: 'Komplette Motor- und Getriebeinstandsetzung – von der Steuerkette bis zum DSG-Steuergerät. Festpreise ab 399€.',
+            image: '/mocks/motor.avif',
+            iconName: 'settings',
+        },
+        {
+            title: 'Bremsen & Fahrwerk',
+            description: 'Bremsbeläge, Bremsscheiben, Stoßdämpfer und Achsvermessung – professionell und zum Festpreis.',
+            image: '/mocks/bremsen.avif',
+            iconName: 'shield',
+        },
+        {
+            title: 'HU/AU & Inspektion',
+            description: 'Hauptuntersuchung und Abgasuntersuchung für PKW (Benzin & Diesel) zum Festpreis von 150€.',
+            image: '/mocks/Inspektion1.avif',
+            iconName: 'wrench',
+        },
+        {
+            title: 'Klimaservice',
+            description: 'Klimaanlagen-Service mit dem neuen Kältemittel R1234yf – Festpreis 199€ inkl. MwSt.',
+            image: '/mocks/klimaanlage1.avif',
+            iconName: 'wind',
+        },
+        {
+            title: 'Karosserie & Lack',
+            description: 'Karosserieschäden beheben und Lackierarbeiten in Fachbetriebsqualität – vom Kratzer bis zum Unfallschaden.',
+            image: '/mocks/Frontscheibe6.png',
+            iconName: 'layers',
+        },
+        {
+            title: 'Elektrik & Diagnose',
+            description: 'Computerdiagnose, KFZ-Elektrik, Batterie-Service und Einspritzsysteme – schnelle Fehlersuche.',
+            image: '/mocks/elektrik.avif',
+            iconName: 'settings',
+        },
     ],
 
+    /** Kurz-Labels für Navbar-Dropdown */
     serviceLabels: [
-        'Inspektion & Wartung',
-        'Reifen & Räder',
-        'Klimaanlage',
-        'Motor Diagnose',
-        'TÜV Vorbereitung',
-        'Karosserie',
+        'Motor & Getriebe',
+        'Bremsen & Fahrwerk',
+        'HU/AU & Inspektion',
+        'Klimaservice',
+        'Karosserie & Lack',
+        'Elektrik & Diagnose',
     ],
 
+    // ───── Bewertungen ─────
     testimonials: [
         {
             name: 'Helena Schmidt',
-            role: 'Autobesitzerin',
-            text: 'Schnell, freundlich und zuverlässig! Sie haben meine Klimaanlage perfekt repariert. Sehr empfehlenswert!',
+            role: 'Kundin',
+            text: 'Schnelle Reparatur zu einem fairen Festpreis. Mein Auto wurde am gleichen Tag fertig. Klare Empfehlung!',
             rating: 5,
             image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop',
         },
         {
             name: 'Markus Weber',
-            role: 'Geschäftskunde',
-            text: 'Professioneller Service mit ehrlichen Preisen. Ich bringe unsere gesamte Flotte hierher.',
+            role: 'Stammkunde',
+            text: 'Professioneller Service für meinen Firmenwagen. Transparente Preise und immer ehrliche Beratung.',
             rating: 5,
             image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop',
         },
         {
             name: 'Julia Meyer',
-            role: 'Autobesitzerin',
-            text: 'Der Abhol- und Bringservice hat mir so viel Zeit gespart. Alles war super bequem.',
+            role: 'Kundin',
+            text: 'HU/AU bestanden beim ersten Anlauf! Sehr gutes Preis-Leistungs-Verhältnis und freundliches Team.',
             rating: 5,
             image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop',
         },
     ],
 
+    googleReviews: { rating: 4.5, count: 779 },
+
+    // ───── Hero-Hotspots ─────
     hotspots: [
-        { id: 'reifen', label: 'Reifen', description: 'Kaufen Sie Reifen aus unserem Produktsortiment und fahren Sie sorgenfrei.', image: '/images/Reifen.png', top: '60%', left: '28%', iconName: 'disc' },
-        { id: 'motor', label: 'Motor', description: 'Professionelle Motordiagnose und Reparatur – schnell und zuverlässig.', image: '/images/motor.avif', top: '48%', left: '60%', iconName: 'settings' },
-        { id: 'scheibe', label: 'Scheibe', description: 'Steinschlag-Reparatur und Scheibentausch – direkt über die Versicherung.', image: '/images/Frontscheibe6.png', top: '40%', left: '46%', iconName: 'shield' },
+        { id: 'reifen', label: 'Reifen', description: 'Reifenwechsel und Reifenservice – sicher unterwegs zu jeder Jahreszeit.', image: '/images/Reifen.png', top: '60%', left: '28%', iconName: 'disc' },
+        { id: 'motor', label: 'Motor', description: 'Motorinstandsetzung, Steuerkette und Zahnriemen – alles aus einer Hand.', image: '/mocks/motor.avif', top: '48%', left: '60%', iconName: 'settings' },
+        { id: 'scheibe', label: 'Scheibe', description: 'Glasreparatur und Scheibentausch – schnell und unkompliziert.', image: '/mocks/Reparatur_Frontscheibe1.avif', top: '40%', left: '46%', iconName: 'shield' },
     ],
 };

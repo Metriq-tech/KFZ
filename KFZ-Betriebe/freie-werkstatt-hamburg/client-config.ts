@@ -1,16 +1,33 @@
 /* ─────────────────────────────────────────────
  *  client-config.ts – Freie Werkstatt Hamburg
- *  Individuell erstellt aus Website-Scraping
+ *  Standalone – wird direkt als Template-Config eingesetzt
  * ───────────────────────────────────────────── */
 
-import type { ClientConfig } from '../../Template/lib/client-config';
+export interface ClientBranding { logoLetter: string; brandName: string; fullName: string; logoImage?: string; }
+export interface ClientContact { email: string; phone: string; phoneDisplay: string; address: string; mapsUrl?: string; }
+export interface ClientSocialLinks { facebook?: string; instagram?: string; linkedin?: string; youtube?: string; google?: string; }
+export interface ClientSEO { title: string; description: string; keywords: string[]; ogTitle: string; ogDescription: string; ogImage: string; locale: string; }
+export interface ClientColors { primary: string; primaryHover: string; primaryLight: string; primaryText: string; dark: string; }
+export interface ClientHeroContent { headlineLine1: string; headlineLine2: string; heroImage: string; heroImageAlt: string; }
+export interface ClientStat { value: string; label: string; iconName: string; }
+export interface ClientAbout { badge: string; headlinePart1: string; headlineHighlight: string; headlinePart2: string; description: string; bulletPoints: string[]; images: { src: string; alt: string }[]; }
+export interface ClientServiceItem { title: string; description: string; image: string; iconName: string; }
+export interface ClientTestimonial { name: string; role: string; text: string; rating: number; image: string; }
+export interface ClientHotspot { id: string; label: string; description: string; image: string; top: string; left: string; iconName: string; }
+export interface ClientGoogleReviews { rating: number; count: number; }
+export interface ClientConfig {
+    branding: ClientBranding; contact: ClientContact; social: ClientSocialLinks; seo: ClientSEO;
+    colors: ClientColors; hero: ClientHeroContent; stats: ClientStat[]; about: ClientAbout;
+    services: ClientServiceItem[]; serviceLabels: string[]; testimonials: ClientTestimonial[];
+    hotspots: ClientHotspot[]; googleReviews?: ClientGoogleReviews;
+}
 
 export const clientConfig: ClientConfig = {
 
     // ───── Branding ─────
     branding: {
         logoLetter: 'F',
-        brandName: 'FREIE WERKSTATT',
+        brandName: 'Freie Werkstatt',
         fullName: 'Freie Werkstatt Hamburg',
         // Logo-Datei hier ablegen: KFZ-Betriebe/freie-werkstatt-hamburg/logo.png
         // logoImage: '/images/logo.png',
@@ -44,12 +61,13 @@ export const clientConfig: ClientConfig = {
 
     // ───── Farben ─────
     colors: {
-        primary: '#1e40af',       // Blau – passend zum professionellen Werkstatt-Image
-        primaryHover: '#1e3a8a',
-        primaryLight: '#dbeafe',
-        primaryText: '#1e40af',
+        primary: '#dc2626',
+        primaryHover: '#b91c1c',
+        primaryLight: '#fee2e2',
+        primaryText: '#dc2626',
         dark: '#0a0a0a',
     },
+
 
     // ───── Hero ─────
     hero: {
@@ -61,10 +79,10 @@ export const clientConfig: ClientConfig = {
 
     // ───── Statistiken (Hero-Bottom-Bar) ─────
     stats: [
-        { value: '779+', label: 'Bewertungen' },
-        { value: '4.5 ★', label: 'Google Score' },
-        { value: 'PKW & LKW', label: 'Alle Fabrikate' },
-        { value: 'Festpreise', label: 'Transparent' },
+        { value: '779+', label: 'Bewertungen', iconName: 'star' },
+        { value: '4.5 ★', label: 'Google Score', iconName: 'thumbsup' },
+        { value: 'PKW & LKW', label: 'Alle Fabrikate', iconName: 'wrench' },
+        { value: 'ab 99€', label: 'Festpreise', iconName: 'tag' },
     ],
 
     // ───── Über Uns (Features) ─────
@@ -83,10 +101,10 @@ export const clientConfig: ClientConfig = {
             'Abschleppdienst verfügbar',
         ],
         images: [
-            { src: '/images/Werkstatt1.jpg', alt: 'Werkstatt Ansicht' },
-            { src: '/images/Nahaufnahme1.avif', alt: 'Detailarbeit am Fahrzeug' },
-            { src: '/images/inspektion.avif', alt: 'Fahrzeuginspektion' },
-            { src: '/images/Werkstatt2.jpg', alt: 'Werkstatt Innenansicht' },
+            { src: '/mocks/Werkstatt1.jpg', alt: 'Werkstatt Ansicht' },
+            { src: '/mocks/Nahaufnahme1.avif', alt: 'Detailarbeit am Fahrzeug' },
+            { src: '/mocks/Inspektion1.avif', alt: 'Fahrzeuginspektion' },
+            { src: '/mocks/Werkstatt2.jpg', alt: 'Werkstatt Innenansicht' },
         ],
     },
 
@@ -95,38 +113,38 @@ export const clientConfig: ClientConfig = {
         {
             title: 'Motor & Getriebe',
             description: 'Komplette Motor- und Getriebeinstandsetzung – von der Steuerkette bis zum DSG-Steuergerät. Festpreise ab 399€.',
-            image: '/images/diagnose.avif',
+            image: '/mocks/motor.avif',
             iconName: 'settings',
         },
         {
             title: 'Bremsen & Fahrwerk',
             description: 'Bremsbeläge, Bremsscheiben, Stoßdämpfer und Achsvermessung – professionell und zum Festpreis.',
-            image: '/images/inspektion.avif',
+            image: '/mocks/bremse.avif',
             iconName: 'shield',
         },
         {
             title: 'HU/AU & Inspektion',
             description: 'Hauptuntersuchung und Abgasuntersuchung für PKW (Benzin & Diesel) zum Festpreis von 150€.',
-            image: '/images/Werkstatt1.jpg',
-            iconName: 'clipboard-check',
+            image: '/mocks/Inspektion1.avif',
+            iconName: 'wrench',
         },
         {
             title: 'Klimaservice',
             description: 'Klimaanlagen-Service mit dem neuen Kältemittel R1234yf – Festpreis 199€ inkl. MwSt.',
-            image: '/images/klimaanlage1.avif',
+            image: '/mocks/klimaanlage1.avif',
             iconName: 'wind',
         },
         {
             title: 'Karosserie & Lack',
             description: 'Karosserieschäden beheben und Lackierarbeiten in Fachbetriebsqualität – vom Kratzer bis zum Unfallschaden.',
-            image: '/images/karosseriebau.avif',
-            iconName: 'paintbrush',
+            image: '/mocks/karosseriebau.avif',
+            iconName: 'layers',
         },
         {
             title: 'Elektrik & Diagnose',
             description: 'Computerdiagnose, KFZ-Elektrik, Batterie-Service und Einspritzsysteme – schnelle Fehlersuche.',
-            image: '/images/elektrik.avif',
-            iconName: 'zap',
+            image: '/mocks/elektrik.avif',
+            iconName: 'settings',
         },
     ],
 
@@ -165,10 +183,12 @@ export const clientConfig: ClientConfig = {
         },
     ],
 
+    googleReviews: { rating: 4.5, count: 779 },
+
     // ───── Hero-Hotspots ─────
     hotspots: [
         { id: 'reifen', label: 'Reifen', description: 'Reifenwechsel und Reifenservice – sicher unterwegs zu jeder Jahreszeit.', image: '/images/Reifen.png', top: '60%', left: '28%', iconName: 'disc' },
-        { id: 'motor', label: 'Motor', description: 'Motorinstandsetzung, Steuerkette und Zahnriemen – alles aus einer Hand.', image: '/images/motor.avif', top: '48%', left: '60%', iconName: 'settings' },
-        { id: 'scheibe', label: 'Scheibe', description: 'Glasreparatur und Scheibentausch – schnell und unkompliziert.', image: '/images/Frontscheibe6.png', top: '40%', left: '46%', iconName: 'shield' },
+        { id: 'motor', label: 'Motor', description: 'Motorinstandsetzung, Steuerkette und Zahnriemen – alles aus einer Hand.', image: '/mocks/motor.avif', top: '48%', left: '60%', iconName: 'settings' },
+        { id: 'scheibe', label: 'Scheibe', description: 'Glasreparatur und Scheibentausch – schnell und unkompliziert.', image: '/mocks/Frontscheibe6.png', top: '40%', left: '46%', iconName: 'shield' },
     ],
 };

@@ -3,17 +3,18 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
-import { Wrench, Star, Briefcase, Wifi, Disc, Settings, Shield } from 'lucide-react';
+import { Wrench, Star, Disc, Settings, Shield, Clock, Gift, ThumbsUp, Tag, Layers } from 'lucide-react';
 import { clientConfig } from '@/lib/client-config';
+import { withPrefix } from '@/lib/asset-prefix';
 import type { ComponentType } from 'react';
 
-/* â”€â”€ Icon-Mapping â”€â”€ */
+/* ── Icon-Mapping (Stats + Hotspots) ── */
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {
-  wrench: Wrench, star: Star, briefcase: Briefcase, wifi: Wifi,
-  disc: Disc, settings: Settings, shield: Shield,
+  wrench: Wrench, star: Star, disc: Disc, settings: Settings, shield: Shield,
+  clock: Clock, gift: Gift, thumbsup: ThumbsUp, tag: Tag, layers: Layers,
 };
 
-/* â”€â”€ Hotspot-Daten aus Config â”€â”€ */
+/* ── Hotspot-Daten aus Config ── */
 const hotspots = clientConfig.hotspots.map((h) => ({
   ...h,
   icon: iconMap[h.iconName] ?? Wrench,
@@ -55,8 +56,6 @@ export function Hero() {
         y2: hs.top + hs.height / 2 - grid.top,
       });
     };
-    // Beim ersten Mount muss die Auto-Eingangsanimation (delay 0.3s + duration 0.8s) abgewartet werden.
-    // Danach reicht ein kurzer Delay für AnimatePresence.
     const delay = isFirstMount.current ? 1300 : 350;
     isFirstMount.current = false;
     const t = setTimeout(updateLine, delay);
@@ -66,14 +65,13 @@ export function Hero() {
 
   return (
     <section id="hero" style={{ backgroundColor: 'var(--color-dark)' }} className="relative min-h-screen text-white pt-20 flex flex-col justify-center">
-      {/* Background Gradients — reduced blur on mobile for performance */}
+      {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-brand-dark/20 blur-[60px] lg:blur-[120px] rounded-full" />
         <div className="absolute top-[20%] right-[0%] w-[40%] h-[60%] bg-brand-dark/10 blur-[50px] lg:blur-[100px] rounded-full" />
       </div>
 
-
-      {/* â”€â”€ Hero Frame Card (wie Referenz-Bild) â”€â”€ */}
+      {/* ── Hero Frame Card ── */}
       <div className="container mx-auto px-4 relative z-10 py-4">
         <div
           className="rounded-xl sm:rounded-[2rem] border border-white/20"
@@ -83,10 +81,9 @@ export function Hero() {
             boxShadow: '0 0 0 1px rgba(255,255,255,0.08), 0 40px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.12)',
           }}
         >
-
           <div ref={gridRef} className="px-2 sm:px-4 pt-4 pb-1 grid grid-cols-1 lg:grid-cols-12 gap-3 items-center relative">
 
-            {/* â”€â”€ Left Info Card (wechselt je nach Hotspot) â”€â”€ Desktop Only */}
+            {/* ── Left Info Card (Hotspot) ── Desktop Only */}
             <div className="hidden lg:flex lg:col-span-2 flex-col gap-4 relative">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -101,7 +98,7 @@ export function Hero() {
                   <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-12 bg-brand rounded-full" />
                   {active.image ? (
                     <div className="relative w-full h-50 mb-3 rounded-2xl overflow-hidden">
-                      <Image src={active.image} alt={active.label} fill className="object-cover" />
+                      <Image src={withPrefix(active.image)} alt={active.label} fill className="object-cover" />
                     </div>
                   ) : (
                     <div className="flex justify-center mb-3">
@@ -129,7 +126,7 @@ export function Hero() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">{clientConfig.hero.headlineLine2}</span>
               </motion.h1>
 
-              {/* Mobile CTA — visible only on mobile, sits just above car image */}
+              {/* Mobile CTA */}
               <motion.div
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -158,9 +155,8 @@ export function Hero() {
                 style={{ willChange: 'transform, opacity' }}
                 className="relative w-full h-[280px] sm:h-[380px] lg:h-[600px] my-0 lg:w-[120%] lg:-ml-[10%]"
               >
-                {/* Car Image â€“ z-10 so hotspots (z-30) sit on top */}
                 <Image
-                  src={clientConfig.hero.heroImage}
+                  src={withPrefix(clientConfig.hero.heroImage)}
                   alt={clientConfig.hero.heroImageAlt}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 800px"
@@ -169,7 +165,7 @@ export function Hero() {
                   priority
                 />
 
-                {/* â”€â”€ Interaktive Hotspots â”€â”€ */}
+                {/* ── Interaktive Hotspots ── */}
                 {hotspots.map((spot) => (
                   <motion.button
                     key={spot.id}
@@ -195,11 +191,9 @@ export function Hero() {
                 {/* Floor Shadow */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[20%] bg-black/60 blur-3xl" style={{ zIndex: 5 }} />
               </motion.div>
-
-
             </div>
 
-            {/* SVG Connector Line â€“ from card to active hotspot */}
+            {/* SVG Connector Line */}
             {lineCoords && (
               <svg className="absolute inset-0 w-full h-full pointer-events-none hidden xl:block" style={{ zIndex: 40, overflow: 'visible' }}>
                 <line
@@ -214,7 +208,7 @@ export function Hero() {
 
             {/* Right Floating Cards - Desktop Only */}
             <div className="hidden lg:flex lg:col-span-2 flex-col gap-6 justify-center">
-              {/* Services List */}
+              {/* Services List – dynamisch aus Config */}
               <motion.div
                 initial={{ x: 50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -225,11 +219,9 @@ export function Hero() {
                   Auto Services
                 </div>
                 <ul className="space-y-2 text-sm text-gray-400">
-                  <li className="hover:text-white cursor-pointer transition-colors">Ölwechsel</li>
-                  <li className="hover:text-white cursor-pointer transition-colors">Getriebe</li>
-                  <li className="hover:text-white cursor-pointer transition-colors">Reifenwechsel</li>
-                  <li className="hover:text-white cursor-pointer transition-colors">Klimaservice</li>
-                  <li className="hover:text-white cursor-pointer transition-colors">Diagnose</li>
+                  {clientConfig.serviceLabels.slice(0, 5).map((label) => (
+                    <li key={label} className="hover:text-white cursor-pointer transition-colors">{label}</li>
+                  ))}
                 </ul>
               </motion.div>
 
@@ -252,11 +244,11 @@ export function Hero() {
             </div>
           </div>{/* end grid */}
 
-          {/* Bottom Stats Bar â€“ inside frame */}
+          {/* Bottom Stats Bar */}
           <div className="px-2 sm:px-6 pt-0 pb-3">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {clientConfig.stats.map((stat, index) => {
-                const StatIcon = [Wrench, Star, Briefcase, Wifi][index] ?? Wrench;
+                const StatIcon = iconMap[stat.iconName] ?? Wrench;
                 return (
                   <motion.div
                     key={index}
@@ -281,10 +273,10 @@ export function Hero() {
         </div>{/* end frame card */}
       </div>{/* end container */}
 
-      {/* Mobile Cards Strip — nur auf Mobile/Tablet sichtbar */}
+      {/* Mobile Cards Strip */}
       <div className="lg:hidden container mx-auto px-4 pb-6">
         <div className="grid grid-cols-2 gap-3">
-          {/* Services Mini-Card */}
+          {/* Services Mini-Card – dynamisch */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -295,10 +287,9 @@ export function Hero() {
               Services
             </div>
             <ul className="space-y-1 text-sm text-gray-400">
-              <li>Ölwechsel</li>
-              <li>Reifenwechsel</li>
-              <li>Klimaservice</li>
-              <li>Diagnose</li>
+              {clientConfig.serviceLabels.slice(0, 4).map((label) => (
+                <li key={label}>{label}</li>
+              ))}
             </ul>
           </motion.div>
 
@@ -323,7 +314,6 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
-
 
     </section>
   );
