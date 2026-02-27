@@ -27,7 +27,7 @@ export const clientConfig: ClientConfig = {
     // ───── Branding ─────
     branding: {
         logoLetter: 'F',
-        brandName: 'Freie Werkstatt',
+        brandName: 'Freie Werkstatt Hamburg',
         fullName: 'Freie Werkstatt Hamburg',
         // Logo-Datei hier ablegen: KFZ-Betriebe/freie-werkstatt-hamburg/logo.png
         // logoImage: '/images/logo.png',
