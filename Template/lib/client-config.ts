@@ -7,23 +7,17 @@
 // ── 1. Typen ──────────────────────────────────
 
 export interface ClientBranding {
-    /** Kürzel fürs Logo (1-2 Zeichen), z.B. "M" oder "SS" */
     logoLetter: string;
-    /** Kurzname für Navbar, z.B. "MEISTER" */
     brandName: string;
-    /** Vollständiger Firmenname für Footer / Impressum */
     fullName: string;
-    /** Optionales Logo-Bild (wenn vorhanden, ersetzt es den Letter-Circle) */
     logoImage?: string;
 }
 
 export interface ClientContact {
     email: string;
     phone: string;
-    /** Formatierte Telefonnummer für Anzeige */
     phoneDisplay: string;
     address: string;
-    /** Google-Maps-Embed-URL oder Link */
     mapsUrl?: string;
 }
 
@@ -46,22 +40,16 @@ export interface ClientSEO {
 }
 
 export interface ClientColors {
-    /** CSS-Variablen-Wert für Akzentfarbe, z.B. "#dc2626" (red-600) */
     primary: string;
-    /** Dunklere Variante für Hover, z.B. "#b91c1c" (red-700) */
     primaryHover: string;
-    /** Noch heller für Badges/Tags, z.B. "#fee2e2" (red-100) */
     primaryLight: string;
-    /** Text auf hellem Primary-Hintergrund, z.B. "#dc2626" */
     primaryText: string;
-    /** Dunkler Hintergrund (Hero, Footer), z.B. "#0a0a0a" */
     dark: string;
 }
 
 export interface ClientHeroContent {
     headlineLine1: string;
     headlineLine2: string;
-    /** Pfad zum Hauptbild (Auto / Werkstatt) */
     heroImage: string;
     heroImageAlt: string;
 }
@@ -77,9 +65,7 @@ export interface ClientAbout {
     headlineHighlight: string;
     headlinePart2: string;
     description: string;
-    /** Checkmark-Liste (USPs) */
     bulletPoints: string[];
-    /** Bilder-Grid im About-Bereich */
     images: { src: string; alt: string }[];
 }
 
@@ -87,7 +73,6 @@ export interface ClientServiceItem {
     title: string;
     description: string;
     image: string;
-    /** Lucide-Icon-Name, z.B. 'wrench', 'thermometer', 'wind' */
     iconName: string;
 }
 
@@ -104,10 +89,8 @@ export interface ClientHotspot {
     label: string;
     description: string;
     image: string;
-    /** CSS-Position relativ zum Hero-Container */
     top: string;
     left: string;
-    /** Lucide-Icon-Name */
     iconName: string;
 }
 
@@ -121,24 +104,21 @@ export interface ClientConfig {
     stats: ClientStat[];
     about: ClientAbout;
     services: ClientServiceItem[];
-    /** Service-Liste für Navbar-Dropdown (kurze Labels) */
     serviceLabels: string[];
     testimonials: ClientTestimonial[];
     hotspots: ClientHotspot[];
 }
 
-// ── 2. Standard-Config (aktueller "Meister Hamburg"-Kunde) ──
+// ── 2. Standard-Config (Template: "Meister Hamburg") ──
 
 export const clientConfig: ClientConfig = {
 
-    // ───── Branding ─────
     branding: {
         logoLetter: 'M',
         brandName: 'MEISTER',
         fullName: 'MEISTER AUTOMOBILES',
     },
 
-    // ───── Kontakt ─────
     contact: {
         email: 'kontakt@kfz-hamburg.de',
         phone: '+4940123456789',
@@ -146,7 +126,6 @@ export const clientConfig: ClientConfig = {
         address: 'Hauptstraße 12, 20095 Hamburg',
     },
 
-    // ───── Social Media ─────
     social: {
         facebook: '#',
         instagram: '#',
@@ -154,7 +133,6 @@ export const clientConfig: ClientConfig = {
         youtube: '#',
     },
 
-    // ───── SEO / Meta ─────
     seo: {
         title: 'KFZ-Meisterbetrieb Hamburg | MEISTER – Ihre Werkstatt mit Festpreisen',
         description:
@@ -176,16 +154,14 @@ export const clientConfig: ClientConfig = {
         locale: 'de_DE',
     },
 
-    // ───── Farben ─────
     colors: {
-        primary: '#dc2626',       // red-600
-        primaryHover: '#b91c1c',  // red-700
-        primaryLight: '#fee2e2',  // red-100
-        primaryText: '#dc2626',   // red-600
+        primary: '#dc2626',
+        primaryHover: '#b91c1c',
+        primaryLight: '#fee2e2',
+        primaryText: '#dc2626',
         dark: '#0a0a0a',
     },
 
-    // ───── Hero ─────
     hero: {
         headlineLine1: 'Wir behandeln Sie & Ihr Auto',
         headlineLine2: 'wie Familie',
@@ -193,7 +169,6 @@ export const clientConfig: ClientConfig = {
         heroImageAlt: 'KFZ Meisterbetrieb Hamburg – Rotes Fahrzeug',
     },
 
-    // ───── Statistiken (Hero-Bottom-Bar) ─────
     stats: [
         { value: '40+', label: 'Werkstätten' },
         { value: '20+', label: 'Jahre Erfahrung' },
@@ -201,7 +176,6 @@ export const clientConfig: ClientConfig = {
         { value: 'Gratis', label: 'WLAN & Kaffee' },
     ],
 
-    // ───── Über Uns (Features) ─────
     about: {
         badge: 'Über Uns',
         headlinePart1: 'Seit über 20 Jahren Ihr',
@@ -225,7 +199,6 @@ export const clientConfig: ClientConfig = {
         ],
     },
 
-    // ───── Services ─────
     services: [
         { title: 'Periodische Wartung', description: 'Halten Sie Ihr Fahrzeug in Top-Form mit unserer regelmäßigen Experten-Wartung.', image: '/images/inspektion.avif', iconName: 'wrench' },
         { title: 'Kühlsystem Reparatur', description: 'Wir beheben Lecks, Kühler und sorgen für optimale Motortemperatur.', image: '/images/karosseriebau.avif', iconName: 'thermometer' },
@@ -235,7 +208,6 @@ export const clientConfig: ClientConfig = {
         { title: 'Motor Diagnose', description: 'Tiefgehende Fehleranalyse mit modernsten Diagnosegeräten.', image: '/images/diagnose.avif', iconName: 'settings' },
     ],
 
-    /** Kurz-Labels für Navbar-Dropdown */
     serviceLabels: [
         'Inspektion & Wartung',
         'Reifen & Räder',
@@ -245,7 +217,6 @@ export const clientConfig: ClientConfig = {
         'Karosserie',
     ],
 
-    // ───── Bewertungen ─────
     testimonials: [
         {
             name: 'Helena Schmidt',
@@ -270,7 +241,6 @@ export const clientConfig: ClientConfig = {
         },
     ],
 
-    // ───── Hero-Hotspots ─────
     hotspots: [
         { id: 'reifen', label: 'Reifen', description: 'Kaufen Sie Reifen aus unserem Produktsortiment und fahren Sie sorgenfrei.', image: '/images/Reifen.png', top: '60%', left: '28%', iconName: 'disc' },
         { id: 'motor', label: 'Motor', description: 'Professionelle Motordiagnose und Reparatur – schnell und zuverlässig.', image: '/images/motor.avif', top: '48%', left: '60%', iconName: 'settings' },

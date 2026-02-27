@@ -66,10 +66,10 @@ export function Hero() {
 
   return (
     <section id="hero" style={{ backgroundColor: 'var(--color-dark)' }} className="relative min-h-screen text-white pt-20 flex flex-col justify-center">
-      {/* Background Gradients */}
+      {/* Background Gradients — reduced blur on mobile for performance */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-brand-dark/20 blur-[120px] rounded-full" />
-        <div className="absolute top-[20%] right-[0%] w-[40%] h-[60%] bg-brand-dark/10 blur-[100px] rounded-full" />
+        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-brand-dark/20 blur-[60px] lg:blur-[120px] rounded-full" />
+        <div className="absolute top-[20%] right-[0%] w-[40%] h-[60%] bg-brand-dark/10 blur-[50px] lg:blur-[100px] rounded-full" />
       </div>
 
 
@@ -78,8 +78,8 @@ export function Hero() {
         <div
           className="rounded-xl sm:rounded-[2rem] border border-white/20"
           style={{
-            background: 'linear-gradient(135deg, rgba(20,20,20,0.85) 0%, rgba(10,10,10,0.95) 100%)',
-            backdropFilter: 'blur(20px)',
+            background: 'linear-gradient(135deg, rgba(20,20,20,0.95) 0%, rgba(10,10,10,0.98) 100%)',
+            backdropFilter: carScale === 1 ? 'none' : 'blur(20px)',
             boxShadow: '0 0 0 1px rgba(255,255,255,0.08), 0 40px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.12)',
           }}
         >
@@ -119,8 +119,10 @@ export function Hero() {
             {/* Center Content (Car & Title) */}
             <div className="col-span-1 lg:col-span-8 text-center relative">
               <motion.h1
-                initial={{ y: -20, opacity: 0 }}
+                initial={{ y: -15, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                style={{ willChange: 'transform, opacity' }}
                 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-1 leading-tight"
               >
                 {clientConfig.hero.headlineLine1} <br />
@@ -129,9 +131,10 @@ export function Hero() {
 
               {/* Mobile CTA — visible only on mobile, sits just above car image */}
               <motion.div
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
+                style={{ willChange: 'transform, opacity' }}
                 className="lg:hidden mb-3 flex gap-3"
               >
                 <button
@@ -151,7 +154,8 @@ export function Hero() {
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: carScale, opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                style={{ willChange: 'transform, opacity' }}
                 className="relative w-full h-[280px] sm:h-[380px] lg:h-[600px] my-0 lg:w-[120%] lg:-ml-[10%]"
               >
                 {/* Car Image â€“ z-10 so hotspots (z-30) sit on top */}
@@ -285,7 +289,7 @@ export function Hero() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-2xl"
+            className="bg-black/80 border border-white/10 p-4 rounded-2xl"
           >
             <div className="bg-brand text-white text-xs font-bold px-2 py-1 rounded-full inline-block mb-3">
               Services
