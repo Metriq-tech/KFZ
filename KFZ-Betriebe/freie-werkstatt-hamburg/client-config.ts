@@ -95,7 +95,7 @@ export const clientConfig: ClientConfig = {
         bulletPoints: [
             'Alle Fabrikate – PKW & LKW',
             'Transparente Festpreise',
-            'Klimaservice R1234yf ab 199€',
+            'Klimaservice ab 199€ inkl. MwSt.',
             'HU/AU Festpreis 150€',
             'Computerdiagnose & KFZ-Elektrik',
             'Abschleppdienst verfügbar',
@@ -130,7 +130,7 @@ export const clientConfig: ClientConfig = {
         },
         {
             title: 'Klimaservice',
-            description: 'Klimaanlagen-Service mit dem neuen Kältemittel R1234yf – Festpreis 199€ inkl. MwSt.',
+            description: 'Klimaanlagen-Service mit modernem Kältemittel – Festpreis 199€ inkl. MwSt.',
             image: '/mocks/klimaanlage1.avif',
             iconName: 'wind',
         },

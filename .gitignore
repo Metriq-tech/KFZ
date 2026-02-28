@@ -6,26 +6,28 @@ leads/
 # ── Lokale Arbeitsbilder (nicht im Template gebraucht) ─────
 images/mocks/
 
-# ── Next.js Build-Artefakte ────────────────────────────────
-New-Template/.next/
-New-Template/out/
-New-Template/node_modules/
-New-Template/.pnp
-New-Template/.pnp.js
+# -- Next.js Build-Artefakte --
+Template/.next/
+Template/out/
+Template/node_modules/
+Template/.pnp
+Template/.pnp.js
 
-# ── Env & Debug ────────────────────────────────────────────
-New-Template/.env
-New-Template/.env.local
-New-Template/.env*.local
-New-Template/npm-debug.log*
+# -- Env & Debug --
+Template/.env
+Template/.env.local
+Template/.env*.local
+Template/npm-debug.log*
 
-# ── OS ─────────────────────────────────────────────────────
-.DS_Store
-Thumbs.db
+# -- TypeScript --
+Template/*.tsbuildinfo
+Template/next-env.d.ts
 
-# ── TypeScript ─────────────────────────────────────────────
-New-Template/*.tsbuildinfo
-New-Template/next-env.d.ts
+# -- Vercel CLI --
+.vercel
+
+# -- Build-Script Backups --
+*.bak
 
 # Agent Skills (lokale Skill-Repos)
 .agent/

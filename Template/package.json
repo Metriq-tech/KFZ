@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node -e \"const fs=require('fs');const path=require('path');const src=path.join(__dirname,'..','images','mocks');const dst=path.join(__dirname,'public','mocks');if(fs.existsSync(src)){fs.mkdirSync(dst,{recursive:true});fs.readdirSync(src).forEach(f=>fs.copyFileSync(path.join(src,f),path.join(dst,f)));console.log('Mocks kopiert:',fs.readdirSync(src).length,'Dateien')}else{console.warn('WARNUNG: images/mocks/ nicht gefunden')}\"",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
